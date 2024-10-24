@@ -9,10 +9,11 @@ import { Metadata } from "next";
 const db = new PrismaClient();
 
 export const metadata: Metadata = {
-  title: '1'
+  title: 'Project',
+  description: 'A project for Whimsy Decor',
 };
 
-export default async function page({params}: {params: {title: string}}) {
+export default async function page({params = {title: "Test"}}: {params: {title: string}}) {
   const title = params.title
   
   let project : Project = {
