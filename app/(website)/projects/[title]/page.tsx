@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   description: 'A project for Whimsy Decor',
 };
 
-export default async function page({params = {title: "Test"}}: {params: {title: string}}) {
-  const title = params.title
+export default async function page({params}: {params: {title: Promise<string>}}) {
+  const title = await params.title
   
   let project : Project = {
     projectID: 0, 
