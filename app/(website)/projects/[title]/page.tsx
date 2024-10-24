@@ -2,13 +2,13 @@ import Action from "@/components/elements/sections/Action";
 import ShowProjects from "@/components/elements/sections/ShowProjects";
 import Header from "@/components/main/Header";
 import Image from "next/image";
-import { useParams } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { PrismaClient, Project } from "@prisma/client";
 import { generateLongDesc, generateTitle } from "@/components/scripts/client/htmlGenerator";
 const db = new PrismaClient();
 
-export default async function page() {//{params}: {params: {title: string}}) {
-  const params = useParams();
+export default async function page({params}: {params: {title: string}}) {
+  const title = await params.title
   
   let project : Project = {
     projectID: 0, 
@@ -24,14 +24,14 @@ export default async function page() {//{params}: {params: {title: string}}) {
     img1: null, img2: null, img3: null, img4: null, img5: null, img6: null, img7: null, img8: null, img9: null, 
     img1Desc: null, img2Desc: null, img3Desc: null, img4Desc: null, img5Desc: null, img6Desc: null, img7Desc: null, img8Desc: null, img9Desc: null, 
     createdDate: new Date(),};
-  if (!isNaN(Number(params.title))) {
+  if (!isNaN(Number(title))) {
     let tempProject : Project | null = await db.project.findUnique({
-      where: {projectID: Number(params.title), isLive: true},
+      where: {projectID: Number(title), isLive: true},
     })
     if (tempProject) project = tempProject;
   } else {
     let tempProject : Project | null = await db.project.findFirst({
-      where: {title: (params.title as string).toLowerCase().replace(/_/g, ' ').trim(), isLive: true}
+      where: {title: (title as string).toLowerCase().replace(/_/g, ' ').trim(), isLive: true}
     })
     if (tempProject) project = tempProject;
   }
