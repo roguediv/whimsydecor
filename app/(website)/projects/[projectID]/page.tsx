@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: 'A project for Whimsy Decor',
 };
 
-export default async function Page({params}: {params: {projectID: string}}) {
+export default function Page({params}: {params: {projectID: string}}) {
   //const title : string = params.projectID as string;
   
   let project : Project = {
