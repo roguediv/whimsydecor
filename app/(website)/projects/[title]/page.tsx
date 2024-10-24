@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   description: 'A project for Whimsy Decor',
 };
 
-export default async function page({params}: {params: {title: Promise<any>}}) {
-  const title = await params.title
+const page: React.FC<{params: {title: string}}> = async (params) => {//export default async function page({params}: {params: {title: string}}) {
+  const title = await params.params.title
   
   let project : Project = {
     projectID: 0, 
@@ -146,3 +146,4 @@ export default async function page({params}: {params: {title: Promise<any>}}) {
     </div>
   );
 }
+export default page;
