@@ -5,10 +5,15 @@ import Image from "next/image";
 import { notFound } from 'next/navigation';
 import { PrismaClient, Project } from "@prisma/client";
 import { generateLongDesc, generateTitle } from "@/components/scripts/client/htmlGenerator";
+import { Metadata } from "next";
 const db = new PrismaClient();
 
+export const metadata: Metadata = {
+  title: '1'
+};
+
 export default async function page({params}: {params: {title: string}}) {
-  const title = await params.title
+  const title = params.title
   
   let project : Project = {
     projectID: 0, 
