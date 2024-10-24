@@ -19,7 +19,7 @@ interface ProjectPageProps {
   };
 }
 
-const page = async ({ params }: ProjectPageProps) => {//export default async function page({params}: {params: {title: string}}) {
+const page: React.FC<ProjectPageProps> = async ({ params }) => {//export default async function page({params}: {params: {title: string}}) {
   const title : string = params.projectID as string;
   
   let project : Project = {
