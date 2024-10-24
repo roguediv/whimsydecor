@@ -13,7 +13,13 @@ export const metadata: Metadata = {
   description: 'A project for Whimsy Decor',
 };
 
-const page = async ({ params }: { params: { projectID: string } }) => {//export default async function page({params}: {params: {title: string}}) {
+interface ProjectPageProps {
+  params: {
+    projectID: string;
+  };
+}
+
+const page = async ({ params }: ProjectPageProps) => {//export default async function page({params}: {params: {title: string}}) {
   const title : string = params.projectID as string;
   
   let project : Project = {
