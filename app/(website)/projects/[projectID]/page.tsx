@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   description: 'A project for Whimsy Decor',
 };
 
-const page: React.FC<{params: {title: string}}> = async (params) => {//export default async function page({params}: {params: {title: string}}) {
-  const title = await params.params.title
+const page = async ({ params }: { params: { projectID: string } }) => {//export default async function page({params}: {params: {title: string}}) {
+  const title : string = params.projectID as string;
   
   let project : Project = {
     projectID: 0, 
@@ -37,7 +37,7 @@ const page: React.FC<{params: {title: string}}> = async (params) => {//export de
     if (tempProject) project = tempProject;
   } else {
     let tempProject : Project | null = await db.project.findFirst({
-      where: {title: (title as string).toLowerCase().replace(/_/g, ' ').trim(), isLive: true}
+      where: {title: title.toLowerCase().replace(/_/g, ' ').trim(), isLive: true}
     })
     if (tempProject) project = tempProject;
   }
