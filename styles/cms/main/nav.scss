@@ -1,0 +1,17 @@
+nav {
+  &.cms-login {
+    .wrapper {
+      background-color: var(--teal-300);
+      padding-top: 10px;
+      padding-bottom: 10px;
+      .scroller-contain .nav-content {
+        grid-template-columns: 1fr;
+        place-items: center;
+        .Logo {display: grid;place-items: center;
+          svg {height: 70px;width: auto; 
+            @media(max-width: $phone) {height: 50px;}}
+        }
+      }
+    }
+  }
+}

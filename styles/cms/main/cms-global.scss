@@ -1,0 +1,28 @@
+.cms {
+  background-color: var(--neutral-100);
+  min-height: 100vh;
+  section {
+    padding: var(--gap-sides);
+    .sct-content {
+      background-color: var(--neutral-white);
+      padding: var(--gap-4);
+      box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      .sct-header {
+        border-bottom: 1px solid var(--neutral-400);
+        padding-bottom: var(--gap-3);
+      }
+      a {
+        color: var(--teal-200);
+        &:hover{color: var(--teal-300);}
+      }
+      >.text {
+        display: grid;
+        gap: var(--gap-3);
+        width: 100%;
+        max-width: 550px;
+        margin: auto;
+      }
+    }
+  }
+}

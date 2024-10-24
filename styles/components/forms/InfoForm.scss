@@ -1,0 +1,103 @@
+#InfoForm {
+  .wrapper {
+    background-color: var(--neutral-100);
+    max-width: 600px;
+    grid-template-rows: 1fr;
+    border-radius: 10px;
+    z-index: 1;
+    &::before {
+      width: calc(100% + 12px);
+      height: calc(100% + 12px);
+      position: absolute;
+      content: '';
+      background-color: var(--neutral-100);
+      z-index: 0;
+      opacity: .2;
+      border-radius: 10px;
+      transform: translate(-6px, -6px);
+    }
+    @media (min-width: 1000px) {
+      width: 80vw;
+      max-height: 90vh;
+    }
+    @media (max-width: $phone) {
+      grid-template-columns: 1fr;
+      grid-template-rows: min-content 1fr;
+      height: min-content;
+      width: calc(100% - var(--gap-sides));
+    }
+    .back {
+      z-index: 2;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 .5rem 0 var(--gap-2);
+      justify-content: space-between;
+      .loader {
+        display: none;
+        margin-top: var(--gap-2);
+        
+        width: 30px;
+        aspect-ratio: 1.154;
+        --_g: no-repeat radial-gradient(farthest-side,var(--orange-100) 90%,#0000);
+        background: 
+          var(--_g) 50%  0,
+          var(--_g) 0    100%,
+          var(--_g) 100% 100%;
+        background-size: 35% calc(35%*1.154);
+        animation: l16 1s infinite;
+      }
+      
+      @keyframes l16{ 
+          50%,100% {background-position: 100% 100%,50% 0,0 100%} 
+      }
+      .info, .success {
+        margin-top: var(--gap-1);
+        font-size: 25px;
+        background: var(--orange-100);//rgba(252, 199, 100, 0.45);
+        color: var(--neutral-500);
+        height: 43px;
+        border-radius: 100%;
+        svg{ padding: 10px;}
+      }
+      .success {display: none;}
+      button {cursor: pointer;}
+    }
+    .content {
+      padding: var(--gap-2);
+      color: var(--neutral-500);
+      h5 {text-transform: none;}
+      p{overflow: hidden;}
+      >.btns {
+        display: flex;
+        margin-left: auto;
+        button {
+          font-size: var(--p-2-size);
+
+          &.alt {
+            background-color: transparent;
+            color: var(--neutral-500);
+            border-color: var(--neutral-400);
+            &:hover {
+              background-color: var(--orange-100);
+              border-color: var(--orange-100);
+            }
+          }
+        }
+      }
+    }
+  }
+  &.noClose .wrapper {
+    .back .loader {display: block;}
+    .back .info {display: none;}
+    .back button {display: none;}
+    .content >.btns {display: none}
+  }
+  &.success {
+    .back .info {display: none;}
+    .back .success {display: block;}
+  }
+  &:not(.waiting) {
+    .wrapper .content .btns {display: none;}
+  }
+}

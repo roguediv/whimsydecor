@@ -1,0 +1,46 @@
+footer {
+  max-width: var(--max-width-background);
+  width: 100vw;
+  z-index: 1;
+  .wrapper {
+    padding: var(--gap-4) var(--gap-sides);
+    display: grid;
+    
+    max-width: var(--max-width);
+    margin: 0 auto;
+    @media (min-width: $phone) {
+      grid-template-columns: 1fr 1fr;
+    }
+    gap: var(--gap-2);
+    .p-1, .p-2 {
+      display: grid;
+      gap: var(--gap-3);
+      @media (max-width: $phone) {
+        .Brand {
+          grid-template-columns: 1fr;
+        }
+        gap: var(--gap-3);
+        text-align: center;
+        place-items: center;
+        margin: 0 auto;
+      }
+    }
+    .p-2 {
+      text-align: center;
+      width: max-content;
+      height: min-content;
+      
+      @media (min-width: $phone) {
+        margin-left: auto;
+      }
+      .Socials {
+        margin: auto;
+        gap: var(--gap-2);
+      }
+      .NavLinks {
+        display: grid;
+        gap: var(--gap-2);
+      }
+    }
+  }
+}

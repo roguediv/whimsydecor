@@ -1,0 +1,20 @@
+#cms-login {
+  section {
+    padding-top: 130px;
+    @media (max-width: $phone) {padding-top: 100px;}
+    .sct-content {
+      .text {text-align: center;}
+      a {
+        width: max-content;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        &.button {
+          button {padding: 14px var(--gap-4);}
+        }
+      }
+
+    }
+  }
+}

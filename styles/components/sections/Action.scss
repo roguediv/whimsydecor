@@ -1,0 +1,37 @@
+section.Action {
+  background-color: #111D1D;
+  color: white;
+  position: relative;
+  .sct-content {
+    button {width: max-content;}
+    .two-grid {
+      align-items: center;
+      .p-1 {
+        gap: var(--gap-2);
+        max-width: 450px;
+        h5 {
+          color: var(--orange-100);
+        }
+        @media (max-width: $phone) {
+          button {display: none;}
+        }
+      }
+      .image {
+        min-height: 400px;
+        img {
+          position: absolute;
+          height: 100%;width: auto;
+          bottom: 0px;
+          object-fit: cover;
+          @media (max-width: $phone) {
+            height: 480px;
+            margin-right: 20px;
+          }
+          
+        }
+        display: grid;
+        place-items: center;
+      }
+    }
+    }
+}

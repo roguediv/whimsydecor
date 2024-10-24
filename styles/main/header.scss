@@ -1,0 +1,531 @@
+header {
+  position: relative;
+  height: 100vh;
+  min-height: 800px;
+  @media (max-width: $phone) {
+    height: min-content;
+    min-height: 700px;
+  }
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .content {
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    display: grid;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 var(--gap-sides);
+    .text {
+      color: var(--neutral-white);
+      display: grid;
+      gap: var(--gap-2);
+      height: min-content;
+      width: 100%;
+      display: grid;
+      gap: var(--gap-3);
+      align-items: center;
+      grid-template-columns: 1fr;
+      max-width: 625px;
+      margin-right: auto;
+      h1 {
+        text-transform: uppercase;
+        font-size: clamp(70px, 10vh + 10px, 100px);
+        line-height: 105%;
+        @media (max-width: 500px) {
+          font-size: clamp(65px, 10vw + 10px, 100px);
+        }
+      }
+      p {
+        @media (max-width: 1100px) {
+          padding-right: 10vw;
+        }
+        @media (max-width: $phone) {
+          padding-right: 30vw;
+        }
+        @media (max-width: 500px) {
+          padding-right: 20vw;
+        }
+      }
+      .btns {
+        display: flex; gap: var(--gap-3);
+        flex-wrap: wrap;
+      }
+    }
+  }
+  #header-icons {
+    display: block;
+    position: absolute;
+    top: 0;
+    svg {
+      position: absolute;
+      width: 85px;
+      height: auto;
+      color: var(--seagreen-400);
+      opacity: .2;
+      &:nth-child(1) {
+        top: 25%;left: 10%;
+        @media (max-width: $phone) {top: 10%;left: 0%;}
+      }
+      &:nth-child(2) {
+        top: 12%;left: 32%;
+        @media (max-width: $phone) {top: 8%;left: 30%;}
+      }
+      &:nth-child(3) {
+        top: 40%;left: 65%;
+        @media (max-width: $phone) {top: 30%;left: 5%;}
+      }
+      &:nth-child(4) {
+        top: 30%;left: 77%;
+        @media (max-width: $phone) {top: 50%;left: 0%;}
+      }
+      &:nth-child(5) {
+        top: 80%;left: 25%;
+        @media (max-width: $phone) {top: 70%;left: 5%;}
+      }
+      &:nth-child(6) {
+        top: 85%;left: 60%;
+        @media (max-width: $phone) {top:85%;left: 40%;}
+      }
+      &:nth-child(7) {
+        top: 82%;left: 75%;
+        @media (max-width: $phone) {top:85%;left: 75%;}
+      }
+      &:nth-child(8) {
+        top: 12%;left: 65%;
+      }
+    }
+  }
+  &.animate {
+    #header-icons {
+      svg {
+        &:nth-child(1) {
+          animation: icon1-load .75s ease-in-out 1;
+          @media (max-width: $phone) {animation: icon1-load-phone .75s ease-in-out 1;}
+          @keyframes icon1-load {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 25%;left: 10%;}
+          }
+          @keyframes icon1-load-phone {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 10%;left: 0%;}
+          }
+        }
+        &:nth-child(2) {
+          animation: icon2-load .75s ease-in-out 1;
+          @media (max-width: $phone) {animation: icon2-load-phone .75s ease-in-out 1;}
+          @keyframes icon2-load {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 12%;left: 32%;}
+          }
+          @keyframes icon2-load-phone {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 8%;left: 30%;}
+          }
+        }
+        &:nth-child(3) {
+          animation: icon3-load .75s ease-in-out 1;
+          @media (max-width: $phone) {animation: icon3-load-phone .75s ease-in-out 1;}
+          @keyframes icon3-load{
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 40%;left: 65%;}
+          }
+          @keyframes icon3-load-phone{
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 30%;left: 5%;}
+          }
+        }
+        &:nth-child(4) {
+          animation: icon4-load .75s ease-in-out 1;
+          @media (max-width: $phone) {animation: icon4-load-phone .75s ease-in-out 1;}
+          @keyframes icon4-load {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 30%;left: 77%;}
+          }
+          @keyframes icon4-load-phone {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 50%;left: 0%;}
+          }
+        }
+        &:nth-child(5) {
+          animation: icon5-load .75s ease-in-out 1;
+          @media (max-width: $phone) {animation: icon5-load-phone .75s ease-in-out 1;}
+          @keyframes icon5-load {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 80%;left: 25%;}
+          }
+          @keyframes icon5-load-phone {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity:.2;top: 70%;left: 5%;}
+          }
+        }
+        &:nth-child(6) {
+          animation: icon6-load .75s ease-in-out 1;
+          @media (max-width: $phone) {animation: icon6-load-phone .75s ease-in-out 1;}
+          @keyframes icon6-load {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 85%;left: 60%;}
+          }
+          @keyframes icon6-load-phone {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top:85%;left: 40%;}
+          }
+        }
+        &:nth-child(7) {
+          animation: icon7-load .75s ease-in-out 1;
+          @media (max-width: $phone) {animation: icon7-load-phone .75s ease-in-out 1;}
+          @keyframes icon7-load {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 82%;left: 75%;}
+          }
+          @keyframes icon7-load-phone {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top:85%;left: 75%;}
+          }
+        }
+        &:nth-child(8) {
+          animation: icon8-load .75s ease-in-out 1;
+          @keyframes icon8-load {
+            0% {opacity: 0;top: 50%;left: 40%;}
+            100% {opacity: .2;top: 12%;left: 65%;}
+          }
+        }
+      }
+    }
+    #imgHeart {
+      animation: heart-in .75s ease-in 1;
+      @keyframes heart-in {
+        0% {transform: scale(.8);opacity: .7;}
+        100% {transform: scale(1);opacity: 1;}
+      }
+    }
+    #text-main {
+      .title {
+        animation: text-in .75s ease-in 1;position: relative;
+      }
+
+      .side {
+        @media (min-width: $phone) {
+          animation: text-in .75s ease-in 1;
+
+        }
+      }
+    }
+
+    @keyframes text-in {
+      0% {
+        top: 20vh;
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        top:0;
+      }
+    }
+  }
+  &.postAnimate {
+    #header-icons {
+      svg {
+        &:nth-child(1) {
+          animation: icon1 10s ease infinite;
+          @keyframes icon1 {
+            0% {transform: translate(0px, 0px);}
+            25% {transform: translate(10px, 10px);}
+            50% {transform: translate(20px, 0px);}
+            75% {transform: translate(10px, -10px);}
+            100% {transform: translate(0px, 0px);}
+          }
+        }
+        &:nth-child(2) {
+          animation: icon2 8s ease infinite;
+          @keyframes icon2 {
+            0% {transform: translate(0px, 0px);}
+            25% {transform: translate(10px, 10px);}
+            50% {transform: translate(20px, 0px);}
+            75% {transform: translate(10px, -10px);}
+            100% {transform: translate(0px, 0px);}
+          }
+        }
+        &:nth-child(3) {
+          animation: icon3 11s ease infinite;
+          @keyframes icon3{
+            0% {transform: translate(0px, 0px);}
+            25% {transform: translate(10px, 10px);}
+            50% {transform: translate(20px, 0px);}
+            75% {transform: translate(10px, -10px);}
+            100% {transform: translate(0px, 0px);}
+          }
+        }
+        &:nth-child(4) {
+          animation: icon4 15s ease infinite;
+          @keyframes icon4 {
+            0% {transform: translate(0px, 0px);}
+            25% {transform: translate(10px, 10px);}
+            50% {transform: translate(20px, 0px);}
+            75% {transform: translate(10px, -10px);}
+            100% {transform: translate(0px, 0px);}
+          }
+        }
+        &:nth-child(5) {
+          animation: icon5 13s ease infinite;
+          @keyframes icon5 {
+            0% {transform: translate(0px, 0px);}
+            25% {transform: translate(10px, 10px);}
+            50% {transform: translate(20px, 0px);}
+            75% {transform: translate(10px, -10px);}
+            100% {transform: translate(0px, 0px);}
+          }
+        }
+        &:nth-child(6) {
+          animation: icon6 9s ease infinite;
+          @keyframes icon6 {
+            0% {transform: translate(0px, 0px);}
+            25% {transform: translate(10px, 10px);}
+            50% {transform: translate(20px, 0px);}
+            75% {transform: translate(10px, -10px);}
+            100% {transform: translate(0px, 0px);}
+          }
+        }
+        &:nth-child(7) {
+          animation: icon7 14s ease infinite;
+          @keyframes icon7 {
+            0% {transform: translate(0px, 0px);}
+            25% {transform: translate(10px, 10px);}
+            50% {transform: translate(20px, 0px);}
+            75% {transform: translate(10px, -10px);}
+            100% {transform: translate(0px, 0px);}
+          }
+        }
+        &:nth-child(8) {
+          animation: icon8 7s ease infinite;
+          @keyframes icon8 {
+            0% {transform: translate(0px, 0px);}
+            25% {transform: translate(10px, 10px);}
+            50% {transform: translate(20px, 0px);}
+            75% {transform: translate(10px, -10px);}
+            100% {transform: translate(0px, 0px);}
+          }
+        }
+      }
+    }
+  }
+  &.home {
+    background: #111D1D;
+    .background {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 100%;height: 90%;
+        background-color: #243333;
+      }
+      .h-1 {
+        position: absolute;
+        height: 85%;
+        @media (max-width: $phone) {
+          left: -130px;
+        }
+      }
+      .h-2 {
+        position: absolute;
+        right: 0px;
+        height: 80%;
+        transform: translate(33%, 5%);
+        @media (max-width: 1400px) {
+          transform: translate(55%, 5%);
+        }
+        @media (max-width: 1100px) {
+          transform: translate(65%, 5%);
+        }
+        @media (max-width: 500px) {
+          transform: translate(72%, 15%);
+        }
+      }
+      .drips {
+        position: absolute;
+        top: calc(88% - 4px);
+        width: 55%;
+        min-width: 700px;
+      }
+      .chair {
+        position: absolute;
+        width: auto;
+        height: 60%;
+        right: 20%;
+        top: 50%;
+        transform: translate(0, -52%);
+        @media (max-width: 1400px) {
+          right: 10%;
+          transform: translate(0, -58%);
+        }
+        @media (max-width: 1100px) {
+          right: 3%;
+          transform: translate(0, -58%);
+        }
+        @media (max-width: $phone) {
+          transform: translate(0, -58%);
+          top: 60%;
+          height: 40%;
+        }
+        @media (max-width: 500px) {
+          transform: translate(0, 0%);
+          right: -10%;
+          top: 20%;
+          height: 35%;
+        }
+        @media (max-width: 360px) {
+          right: -20%;
+        }
+      }
+    }
+  }
+  &.project, &.about {
+    height: 75vh;
+    min-height: 500px;
+    background-color: #1E1E1E;
+    @media(max-width: $phone) {
+      max-height: 450px;
+      min-height: 300px;
+    }
+    .background {
+      // height: calc(100% - 130px);
+      // margin-top: 130px;
+      >img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .carousel {
+        display: flex;
+        height: 100%;
+        width: 500%;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        &.slide-1 {animation: slide-1 .5s ease-in-out 1;margin-left: 0%;}
+        &.slide-2 {animation: slide-2 .5s ease-in-out 1;margin-left: -100%;}
+        &.slide-3 {animation: slide-3 .5s ease-in-out 1;margin-left: -200%;}
+        &.slide-4 {animation: slide-4 .5s ease-in-out 1;margin-left: -300%;}
+        @keyframes slide-1 {
+          0% {margin-left: -300%;}
+          99% {margin-left: -400%;}
+          100% {margin-left: 0%;}
+        }
+        @keyframes slide-2 {
+          0% {margin-left: 0%;}
+          100% {margin-left: -100%;}
+        }
+        @keyframes slide-3 {
+          0% {margin-left: -100%;}
+          100% {margin-left: -200%;}
+        }
+        @keyframes slide-4 {
+          0% {margin-left: -200%;}
+          100% {margin-left: -300%;}
+        }
+      }
+      .icons {
+        >img {
+          position: absolute;
+          height: auto;
+          &:nth-child(1) {
+            bottom: 50%;left: var(--gap-sides);
+            width: 150px;
+            @media (max-width: $phone) {width: 75px;}
+          }
+          &:nth-child(2) {
+            bottom: 10%;left: calc(var(--gap-sides) + 75px);
+            width: 100px;
+            @media (max-width: $phone) {display: none;}
+          }
+          &:nth-child(3) {
+            bottom: 55%;left: 50%;
+            width: 100px;
+            @media (max-width: $phone) {display: none;}
+          }
+          &:nth-child(4) {
+            bottom: 12%;left: 45%;
+            width: 150px;
+            @media (max-width: $phone) {width: 100px;left: calc(var(--gap-sides) + 40px);}
+          }
+          &:nth-child(5) {
+            bottom: 50%;right: var(--gap-sides);
+            width: 150px;
+            @media (max-width: $phone) {width: 100px;}
+          }
+          &:nth-child(6) {
+            bottom: 50%;right: var(--gap-sides);
+            transform: translate(-50%, 90%);
+            width: 120px;
+            @media (max-width: $phone) {width: 80px;}
+          }
+
+        }
+      }
+      &:after {
+        width: 100%;height:180px;
+        top: 0;left: 0;
+        position: absolute;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .6) 50%, rgba(0, 0, 0, .8) 80%);
+
+        content: '';
+      }
+    }
+    .content {
+      .text {
+        position: absolute;
+        bottom: var(--gap-4);
+        left: var(--gap-sides);
+        place-items: center;
+        display: grid;
+        gap: var(--gap-2);
+        background-color: rgba(268, 240, 223, 0.7);
+        color: var(--neutral-black);
+        padding: var(--gap-2);
+        border: 2px solid black;
+        text-align: center;
+        width: max-content;
+        border-image: linear-gradient(
+          to top right,
+          #a49067 50%,
+          #ffffff 100%
+        ) 1;
+        .css-hexagon {
+          height: 70px;width:80px;
+          position: absolute;
+          bottom: 0px; right: 0px;
+          transform: translate(70%, 30%);
+          background-color: var(--orange-200);
+        }
+        p {max-width: 390px;}
+      }
+    }
+    &.about {
+      @media (min-width:$phone) {min-height: 625px;}
+      @media (max-width: $phone) {height: max-content;max-height: 1000px;
+        .content {
+          position: relative;
+          .text {
+              width: 100%;
+              position: relative;
+              left: 0;
+              margin-top: 125px;
+              .css-hexagon {
+                width: 50px;height:45px;
+              }
+            }
+          } 
+        }
+        .content .text p {
+          padding: 0;
+        }
+    }
+  }
+}

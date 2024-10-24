@@ -1,0 +1,105 @@
+.ProjectPreview {
+  --col-background: #111d1d;
+  --col-main: var(--orange-200);
+  cursor: pointer;
+  .image {
+    position: relative;
+    margin-bottom: var(--gap-2);
+    &:after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;top: 0;
+      opacity: 0;
+      background-color: var(--neutral-500);
+      transition: var(--transition);
+    }
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      max-height: 300px;
+    }
+    >.css-hexagon {
+      position: absolute;
+      width: 80px;height: 70px;
+      transform: translate(25%, 20%);
+      right: 0px;bottom: 0px;
+      display: grid;
+      place-items: center;
+      background-color: var(--col-background);
+      .css-hexagon {
+        position: relative;
+        width: 60px; height: 50px;
+        background: var(--col-main);
+      }
+    }
+  }
+  p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; 
+    overflow: hidden;            
+    text-overflow: ellipsis;     
+    max-height: 7.5em;  
+  }
+  &.hex {
+    aspect-ratio: 1.1 / 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--orange-200);
+    display: grid;
+    place-items: center;
+    clip-path: polygon(
+      25% 0%,    /* Top left */
+      75% 0%,    /* Top right */
+      100% 50%,  /* Middle right */
+      75% 100%,  /* Bottom right */
+      25% 100%,  /* Bottom left */
+      0% 50%     /* Middle left */
+    );
+    p {display: none;}
+    h4 {opacity: 0; z-index: 1;transition: var(--transition);text-align: center;max-width: 80%;}
+    .css-hexagon {display: none;}
+    .image {
+      position: absolute;
+      width: 97%;
+      height: 97%;
+      margin-bottom: 0;
+      display: grid;
+      place-items: center;
+      background-color: black;
+      clip-path: polygon(
+        25% 0%,    /* Top left */
+        75% 0%,    /* Top right */
+        100% 50%,  /* Middle right */
+        75% 100%,  /* Bottom right */
+        25% 100%,  /* Bottom left */
+        0% 50%     /* Middle left */
+      );
+      &:after {opacity: .2;}
+      img {
+        position: absolute;
+        height: 100%;
+        overflow: hidden;
+        max-height: 500px;
+      }
+    }
+    &:hover {
+      h4 {opacity: 1;}
+      .image:after {
+        opacity: .8;
+
+      }
+    }
+    @media (max-width: $phone) {
+      h4 {opacity: 1;}
+      .image:after {
+        opacity: .6;
+
+      }
+    }
+  }
+}

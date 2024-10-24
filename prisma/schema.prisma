@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  userID   Int       @id @default(autoincrement())
+  name     String
+  email    String    @unique
+  phone    String?   @unique
+  password String
+  slt      String
+  access   Int
+  createdDate  DateTime @default(now())
+
+  projects Project[] 
+}
+
+model Project {
+  projectID   Int @id @default(autoincrement())
+  userID      Int 
+  title       String @default("Project Title")
+  shortDesc   String @db.VarChar(500) @default("Undefined Summary")
+  longDesc    String @db.VarChar(2000) @default("Undefined Description")
+  projectDate DateTime? @default(now())
+  isFeatured  Boolean @default(false)
+  isLive  Boolean @default(false)  
+  services    String @db.VarChar(2000) @default("")
+  order Int
+  img1        String?
+  img2        String?
+  img3        String?
+  img4        String?
+  img5        String?
+  img6        String?
+  img7        String?
+  img8        String?
+  img9        String?
+  img1Desc    String?
+  img2Desc    String?
+  img3Desc    String?
+  img4Desc    String?
+  img5Desc    String?
+  img6Desc    String?
+  img7Desc    String?
+  img8Desc    String?
+  img9Desc    String?
+  createdDate  DateTime @default(now())
+
+  user User @relation(fields: [userID], references: [userID])  
+  testimonials Testimonial[]  
+
+  @@index([userID])
+}
+
+model Testimonial {
+  testimonialID Int    @id @default(autoincrement())  
+  projectID     Int    @default(0)
+  title         String @default("Title")
+  desc          String @db.VarChar(2000) @default("Desc")
+  name          String @db.VarChar(500) @default("John Doe")
+  img1          String?        
+  img1Desc      String?      
+
+  project Project @relation(fields: [projectID], references: [projectID])  
+
+  @@index([projectID])
+}

@@ -1,0 +1,163 @@
+.Popup {
+  z-index: 1000;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;left: 0;
+  display: grid;
+  place-items: center;
+  .backdrop {
+    width: 100vw;height:100vh;
+    position: absolute;
+    top: 0;left: 0;
+    z-index:0;
+
+  }
+  &.init {display: none;}
+  &.show {
+    animation: show-fade-in var(--transition) ease-in forwards;
+  }
+  &:not(.show) {
+    animation: show-fade-out var(--transition) ease-in forwards;
+  }
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    max-height: 100vh;
+    @media(max-width: $phone) {
+      height: 100%;
+    }
+    .back {
+      z-index: 1;
+      position: absolute;
+      button {
+        background-color: transparent;
+        border: none;
+        font-size: 32px;
+        padding: var(--gap-1);
+        display: grid;
+        place-items: center;
+        svg {transition: var(--transition);}
+        &:hover {
+          svg {color: var(--error-200);}
+        }
+      }
+    }
+    >.side {
+      position: relative;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;left:0;
+        width:100%;height: 100%;
+        opacity: .75;
+      }
+      
+    }
+    >.content { 
+      padding: var(--gap-2) var(--gap-1);
+      display: grid;
+      gap: var(--gap-1);
+      max-height: 100vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      max-height: 100%;
+      position: relative;
+      >div {
+        display: grid;
+        gap: var(--gap-2);
+        height: min-content;
+        display: none;
+        >h4 {margin-top: var(--gap-1);}
+        
+        &.slide-in {
+          display: grid;
+          animation: slide-in  var(--transition) ease-in forwards;
+        }
+        &.slide-out {
+          display: grid;
+          animation: slide-out  var(--transition) ease-in forwards;
+        }
+        &.slide-in-rev {
+          display: grid;
+          animation: slide-in-rev  var(--transition) ease-in forwards;
+        }
+        &.slide-out-rev {
+          display: grid;
+          animation: slide-out-rev  var(--transition) ease-in forwards;
+        }
+        &.slide-init {animation: none;}
+      }
+      button {width: 100%;}
+    }
+    .radioButtons {
+      display: flex;
+      gap: var(--gap-1);
+    }
+    .nav-btns {
+      display: flex;
+      gap: var(--gap-1);
+      button {
+        width: min-content;
+      }
+    }
+  }
+  @keyframes show-fade-in {
+    0% {opacity: 0;display: grid;}
+    100% {opacity: 1;pointer-events: all;}
+  }
+  @keyframes show-fade-out {
+    0% {opacity: 1;}
+    100% {opacity: 0;pointer-events: none;}
+  }
+  @keyframes slide-in {
+    0% {
+      transform: translate(110%, 0);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0%, 0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-out {
+    0% {
+      transform: translate(0%, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-110%, 0);
+      opacity: 0;
+    }
+  }
+  @keyframes slide-in-rev {
+    0% {
+      transform: translate(-110%, 0);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0%, 0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-out-rev {
+    0% {
+      transform: translate(0%, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(110%, 0);
+      opacity: 0;
+    }
+  }
+}

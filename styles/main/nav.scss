@@ -1,0 +1,342 @@
+nav {
+  position: absolute;
+  z-index: 1000;
+  width: 100vw;
+  max-width: var(--max-width-background);
+  color: var(--neutral-white);
+  .nav-trigger {
+    position: absolute;
+    top: 60vh;
+  }
+  .phone {margin-left: auto;display: none;}
+  .wrapper {
+    transition: var(--transition);
+    position: relative;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+    padding: var(--gap-2) var(--gap-sides);
+    .scroller-contain {width: 100%;}
+  }
+  .nav-content {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    height: 100%;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+    max-width: var(--max-width);
+    position: relative;
+    width: 100%;
+    @media (max-width: $phone) {
+      grid-template-columns: 1fr min-content 1fr;
+    }
+    .Brand {
+      @media (max-width: $phone) {
+        h2 {display: none;}
+        grid-area: 1 / 2 / span 1 / span 1;
+        svg {
+          height: 50px;
+        }
+      }
+    }
+    .logo {
+      display: grid;
+      place-items: center;
+      grid-area: 1 / 2 / span 1 / span 1;
+      svg {
+        width: clamp(3rem, 3.5vw + .5rem, 5rem);
+        height: clamp(3rem, 3.5vw + .5rem, 5rem);
+      }
+
+    }
+    .nav-wrapper {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: var(--gap-3);
+      button {
+        letter-spacing: 1px;
+      }
+      .NavLinks {
+        display: flex;
+        gap: var(--gap-3);
+        a {
+          text-transform: uppercase;
+          padding: .5rem 0;display: block;
+          border-top: 1px solid transparent;
+          border-bottom: 1px solid transparent;
+          &:hover {
+            color: var(--neutral-300);
+            border-top: 1px solid var(--neutral-300);
+            border-bottom: 1px solid var(--neutral-300);
+          }
+        }
+        .active a {
+          border-top: 1px solid var(--neutral-white);
+          border-bottom: 1px solid var(--neutral-white);
+        }
+      }
+      .Socials {
+        display: none;
+        @media (max-width: $phone) {
+          display: flex;
+          a {
+            width: 45px;
+            height: 45px;
+            position: relative;
+          }
+          svg {
+            width: 25px;
+          }
+        }
+      }
+    }
+    .Socials {
+      a {
+        @media (max-width: 400px) {
+          &:nth-child(1), &:nth-child(1) {display: none;}
+        }
+      }
+    }
+  }
+  .hamburger {
+    display:grid;
+    place-items:center;
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    right: 0px;
+    top: -3px;
+    cursor: pointer;
+    label{
+      display:flex;
+      flex-direction:column;
+      width:45px;
+      cursor:pointer;
+      span{
+        background: #fff;
+        border-radius:10px;
+        height:4px;
+        margin: 6px 0;
+        transition: .4s  cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        &:nth-of-type(1){width:50%;margin: 6px auto;}
+        &:nth-of-type(2){width:100%;}
+        &:nth-of-type(3){width:50%;margin: 6px auto;}
+      }
+    }
+  }
+  @media (max-width: $phone) {
+    .nav-content {
+      .phone {display: block;}
+      .nav-wrapper {display: none;}
+      .Socials {display: none;}
+    }
+
+  }
+  &.scrolled {
+    .wrapper {
+      position: fixed;
+      background-color: var(--neutral-500);
+      padding: var(--gap-1) 0;
+      animation: scrollFade var(--transition) ease-in 1;
+      min-height: 75px;
+      .scroller-contain {
+        max-width: var(--max-width);
+        padding: 0 var(--gap-sides);
+        margin: 0 auto;
+        .nav-content {
+          .logo {
+            align-items: center;
+            .SvgLogo {
+              width: clamp(2.5rem, 3vw + .5rem, 3rem);
+              height: clamp(2.5rem, 3vw + .5rem, 3rem);
+            }
+            svg {
+              width: clamp(2.5rem, 3vw + .5rem, 3rem);
+              height: clamp(2.5rem, 3vw + .5rem, 3rem);
+            }
+          }
+        }
+      }
+    }
+    .hamburger {
+      top: -5px;
+    }
+    @keyframes scrollFade {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+  &.activePhone {
+    &:not(.scolled) {
+      .wrapper .scroller-contain .nav-wrapper {margin-top: -5px;}
+    }
+    --active-background: rgba(0, 0, 0, 0.85);
+    .wrapper {
+      position: fixed;
+      &:after {
+        width: 100vw;height: 100vh;
+        content: '';
+        top: 0;left: 0;
+        background-color: var(--active-background);
+        position: absolute;
+        z-index: 0;
+      }
+      .scroller-contain {
+        position: relative;
+        z-index: 1;
+        .nav-content {
+          .Brand {
+            grid-template-columns: 1fr;
+            place-items: center;
+            padding-top: var(--gap-sct);
+            .Logo svg {height: auto;width: 100px;}
+            h2 {
+              display: block;
+              text-align: center;
+            }
+          }
+        }
+        .nav-wrapper {
+          animation: phone-in var(--transition) ease-in 1;
+          position: relative;
+          grid-area: 2/1/span 1/span 3;
+          display: grid;
+          top: 50px;
+          left: 0;
+          width: 100vw;
+          margin-left: calc(var(--gap-sides) * -1);
+          padding: var(--gap-sides);
+          place-items: center;
+          border-top: 1px solid #E3D7A7;
+          width: 100%;
+          margin: 0 auto;
+          gap: var(--gap-4);
+          .Socials {
+            grid-area: 1 / 1 / span 1 / span 1;
+            width: max-content;
+          }
+          ul {
+            display: grid;
+            place-items: center;
+            li {
+              width: max-content;
+            }
+          }
+          button {
+            width: 100%;
+          }
+        }
+        .phone .hamburger label {
+          span:nth-of-type(1){
+            transform-origin:bottom;
+            width: 50%;
+            transform: rotatez(45deg) translate(-1px,10px);
+          }
+          span:nth-of-type(2){
+            transform-origin:top;
+            transform:rotatez(-45deg)
+          }
+          span:nth-of-type(3){
+            transform-origin:bottom;
+            width:50%;
+            transform: rotatez(45deg) translate(0px,-12px);
+          }
+        }
+      }
+    }
+    &.phone-fade-out {
+      .wrapper {
+        .scroller-contain {
+          .nav-wrapper {
+            animation: phone-out var(--transition) ease-in 1;
+            opacity: 0;
+            top: -10%;
+          }
+        }
+      }
+    }
+    &.scrolled {
+      .wrapper {
+        background-color: transparent;
+      }
+    }
+    @keyframes phone-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes phone-out {
+      0% {
+        opacity: 1;
+        top: 50px;
+      }
+      100% {
+        opacity: 0;
+        top: -10%;
+      }
+    }
+  }
+  display: none;
+  &.animate {
+    display: block;
+    animation: nav-in var(--transition) ease-in 1;
+    .Socials {
+      a {
+        position: relative;
+        &:nth-child(1) {
+          animation: item2 .25s ease-in 1;
+        }
+        &:nth-child(2) {
+          animation: item2 .35s ease-in 1;
+        }
+        &:nth-child(3) {
+          animation: item2 .45s ease-in 1;
+        }
+        &:nth-child(4) {
+          animation: item2 .55s ease-in 1;
+        }
+        @keyframes item1 {
+          0% {left: -25px;opacity: 0;}
+          100% {left: 0px;opacity: 1;}
+        }
+      }
+    }
+    .nav-wrapper {
+      ul {
+        li {
+          position: relative;
+          &:nth-child(1) {
+            animation: item2 .55s ease-in 1;
+          }
+          &:nth-child(2) {
+            animation: item2 .65s ease-in 1;
+          }
+        }
+      }
+      button {
+        animation: item2 .75s ease-in 1;
+      }
+
+      @keyframes item2 {
+        0% {left: 75px;opacity: 0;}
+        100% {left: 0px;opacity: 1;}
+      }
+    }
+    .SvgLogo {
+      animation: nav-in 1.25s ease-in 1;
+    }
+    @keyframes nav-in {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+  }
+}
