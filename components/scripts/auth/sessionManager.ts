@@ -93,9 +93,10 @@ export async function login(formData: FormData): Promise<ReturnField> {
   // Create the session
   const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
   const session = await encrypt({ user, expires });
+  const allCookies = await cookies();
 
   // Save the session in a cookie
-  cookies().set("session", session, { expires, httpOnly: true, sameSite: "lax",});
+  allCookies.set("session", session, { expires, httpOnly: true, sameSite: "lax",});
   prismaExecutionService.endQuery();
   return {status: 1, title: "Signed in", desc: "Signed in", data: null}
 }
@@ -103,12 +104,14 @@ export async function login(formData: FormData): Promise<ReturnField> {
 export async function logout() {
   "use server"
   // Destroy the session
-  cookies().set("session", "", { expires: new Date(0), sameSite: "lax" });
+  const allCookies = await cookies();
+  allCookies.set("session", "", { expires: new Date(0), sameSite: "lax" });
 }
 
 export async function getSession() {
   "use server"
-  const session = cookies().get("session")?.value;
+  const allCookies = await cookies();
+  const session = allCookies.get("session")?.value;
   if (!session) return null;
   return await decrypt(session);
 }
@@ -133,7 +136,8 @@ export async function updateSession(request: NextRequest) {
 
 export async function isValidSession() {
   "use server"
-  const session = cookies().get("session")?.value;
+  const allCookies = await cookies();
+  const session = allCookies.get("session")?.value;
   if (!session) return false;
   return true;
 }

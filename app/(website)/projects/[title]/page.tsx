@@ -2,11 +2,14 @@ import Action from "@/components/elements/sections/Action";
 import ShowProjects from "@/components/elements/sections/ShowProjects";
 import Header from "@/components/main/Header";
 import Image from "next/image";
+import { useParams } from 'next/navigation';
 import { PrismaClient, Project } from "@prisma/client";
 import { generateLongDesc, generateTitle } from "@/components/scripts/client/htmlGenerator";
 const db = new PrismaClient();
 
-export default async function page({params}: {params: {title: string}}) {
+export default async function page() {//{params}: {params: {title: string}}) {
+  const params = useParams();
+  
   let project : Project = {
     projectID: 0, 
     userID: 0, 
@@ -28,7 +31,7 @@ export default async function page({params}: {params: {title: string}}) {
     if (tempProject) project = tempProject;
   } else {
     let tempProject : Project | null = await db.project.findFirst({
-      where: {title: params.title.toLowerCase().replace(/_/g, ' ').trim(), isLive: true}
+      where: {title: (params.title as string).toLowerCase().replace(/_/g, ' ').trim(), isLive: true}
     })
     if (tempProject) project = tempProject;
   }
