@@ -13,14 +13,8 @@ export const metadata: Metadata = {
   description: 'A project for Whimsy Decor',
 };
 
-interface ProjectPageProps {
-  params: {
-    projectID: string;
-  };
-}
-
-const page: React.FC<ProjectPageProps> = async ({ params }) => {//export default async function page({params}: {params: {title: string}}) {
-  const title : string = params.projectID as string;
+export default async function Page({params}: {params: {projectID: string | null}}) {
+  //const title : string = params.projectID as string;
   
   let project : Project = {
     projectID: 0, 
@@ -36,22 +30,22 @@ const page: React.FC<ProjectPageProps> = async ({ params }) => {//export default
     img1: null, img2: null, img3: null, img4: null, img5: null, img6: null, img7: null, img8: null, img9: null, 
     img1Desc: null, img2Desc: null, img3Desc: null, img4Desc: null, img5Desc: null, img6Desc: null, img7Desc: null, img8Desc: null, img9Desc: null, 
     createdDate: new Date(),};
-  if (!isNaN(Number(title))) {
-    let tempProject : Project | null = await db.project.findUnique({
-      where: {projectID: Number(title), isLive: true},
-    })
-    if (tempProject) project = tempProject;
-  } else {
-    let tempProject : Project | null = await db.project.findFirst({
-      where: {title: title.toLowerCase().replace(/_/g, ' ').trim(), isLive: true}
-    })
-    if (tempProject) project = tempProject;
-  }
-  let projects : Project[] = await db.project.findMany({
-    take: 3, 
-    orderBy: {order: 'desc',},
-    where: {projectID: {not: project.projectID}, isLive: true}
-  });
+  // if (!isNaN(Number(title))) {
+  //   let tempProject : Project | null = await db.project.findUnique({
+  //     where: {projectID: Number(title), isLive: true},
+  //   })
+  //   if (tempProject) project = tempProject;
+  // } else {
+  //   let tempProject : Project | null = await db.project.findFirst({
+  //     where: {title: title.toLowerCase().replace(/_/g, ' ').trim(), isLive: true}
+  //   })
+  //   if (tempProject) project = tempProject;
+  // }
+  // let projects : Project[] = await db.project.findMany({
+  //   take: 3, 
+  //   orderBy: {order: 'desc',},
+  //   where: {projectID: {not: project.projectID}, isLive: true}
+  // });
   return (
     <div id="pge-projects">
       <Header page="project" title={project.title} src={project.img1} />
@@ -152,4 +146,3 @@ const page: React.FC<ProjectPageProps> = async ({ params }) => {//export default
     </div>
   );
 }
-export default page;
