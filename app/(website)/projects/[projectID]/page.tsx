@@ -3,17 +3,17 @@ import ShowProjects from "@/components/elements/sections/ShowProjects";
 import Header from "@/components/main/Header";
 import Image from "next/image";
 import { notFound } from 'next/navigation';
-import { PrismaClient, Project } from "@prisma/client";
 import { generateLongDesc, generateTitle } from "@/components/scripts/client/htmlGenerator";
 import { Metadata } from "next";
-const db = new PrismaClient();
+import { PrismaClient, Project } from "@prisma/client";
+//const db = new PrismaClient();
 
 export const metadata: Metadata = {
   title: 'Project',
   description: 'A project for Whimsy Decor',
 };
 
-export default async function Page({params}: {params: {projectID: string | null}}) {
+export default async function Page({params}: {params: {projectID: string}}) {
   //const title : string = params.projectID as string;
   
   let project : Project = {
@@ -141,7 +141,7 @@ export default async function Page({params}: {params: {projectID: string | null}
           </div>
         </div>
       </section>
-      <ShowProjects projects={projects} small={true}/>
+      <ShowProjects projects={null} small={true}/>
       <Action className="theme-teal-300"/>
     </div>
   );
