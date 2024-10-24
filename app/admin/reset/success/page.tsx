@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaLessThan } from "react-icons/fa";
 
-export default function SuccessPage() {
+export default async function SuccessPage() {
   return (
     <div id="cms-login">
       <section>

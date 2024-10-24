@@ -4,7 +4,7 @@ import ShowProjects from "@/components/elements/sections/ShowProjects";
 import Header from "@/components/main/Header";
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div id="pge-about">
       <Header page="about" />
