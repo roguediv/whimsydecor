@@ -6,15 +6,15 @@ import { notFound } from 'next/navigation';
 import { generateLongDesc, generateTitle } from "@/components/scripts/client/htmlGenerator";
 import { Metadata } from "next";
 import { PrismaClient, Project } from "@prisma/client";
-//const db = new PrismaClient();
+const db = new PrismaClient();
 
 export const metadata: Metadata = {
   title: 'Project',
   description: 'A project for Whimsy Decor',
 };
 
-export default function Page({params}: {params: {projectID: string}}) {
-  //const title : string = params.projectID as string;
+export default async function Page({params}: {params: {projectID: string}}) {
+  const title : string = params.projectID as string;
   
   let project : Project = {
     projectID: 0, 
@@ -30,22 +30,22 @@ export default function Page({params}: {params: {projectID: string}}) {
     img1: null, img2: null, img3: null, img4: null, img5: null, img6: null, img7: null, img8: null, img9: null, 
     img1Desc: null, img2Desc: null, img3Desc: null, img4Desc: null, img5Desc: null, img6Desc: null, img7Desc: null, img8Desc: null, img9Desc: null, 
     createdDate: new Date(),};
-  // if (!isNaN(Number(title))) {
-  //   let tempProject : Project | null = await db.project.findUnique({
-  //     where: {projectID: Number(title), isLive: true},
-  //   })
-  //   if (tempProject) project = tempProject;
-  // } else {
-  //   let tempProject : Project | null = await db.project.findFirst({
-  //     where: {title: title.toLowerCase().replace(/_/g, ' ').trim(), isLive: true}
-  //   })
-  //   if (tempProject) project = tempProject;
-  // }
-  // let projects : Project[] = await db.project.findMany({
-  //   take: 3, 
-  //   orderBy: {order: 'desc',},
-  //   where: {projectID: {not: project.projectID}, isLive: true}
-  // });
+  if (!isNaN(Number(title))) {
+    let tempProject : Project | null = await db.project.findUnique({
+      where: {projectID: Number(title), isLive: true},
+    })
+    if (tempProject) project = tempProject;
+  } else {
+    let tempProject : Project | null = await db.project.findFirst({
+      where: {title: title.toLowerCase().replace(/_/g, ' ').trim(), isLive: true}
+    })
+    if (tempProject) project = tempProject;
+  }
+  let projects : Project[] = await db.project.findMany({
+    take: 3, 
+    orderBy: {order: 'desc',},
+    where: {projectID: {not: project.projectID}, isLive: true}
+  });
   return (
     <div id="pge-projects">
       <Header page="project" title={project.title} src={project.img1} />
@@ -141,7 +141,7 @@ export default function Page({params}: {params: {projectID: string}}) {
           </div>
         </div>
       </section>
-      <ShowProjects projects={null} small={true}/>
+      <ShowProjects projects={projects} small={true}/>
       <Action className="theme-teal-300"/>
     </div>
   );
