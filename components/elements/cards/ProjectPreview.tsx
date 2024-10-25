@@ -20,7 +20,7 @@ const ProjectPreview: React.FC<Props> = ({ className = '', project = null}) => {
           alt={`Preview Icon for ${project.title.replace('/nl', '')}`} />
           <div className="css-hexagon"><div className="css-hexagon"></div></div>
       </div>
-      <h4>{project.title}</h4>
+      <h4>{project.title.replace('/nl', '')}</h4>
       <p>{project.shortDesc}</p>
       
     </Link>
