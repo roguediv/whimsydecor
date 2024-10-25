@@ -29,6 +29,12 @@ section.Action {
           }
           
         }
+        button {
+          transform: translate(0, 50%);
+          @media (max-width: $phone) {
+            margin-top: var(--gap-sct);
+          }
+        }
         display: grid;
         place-items: center;
       }

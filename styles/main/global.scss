@@ -830,11 +830,8 @@ main {
   .dots-sm {
     display: none;
     @media (max-width: $phone) {display: block;}
-    @media (min-width: 420px) {
-
-      right: -60%;
-    }
-    
+    @media (min-width: 420px) {right: -60%;}
+    @media (min-width: 350px) {right: -70%;}
   }
 }
 

@@ -78,7 +78,6 @@ const Nav: React.FC<props> = ({className = ''}) => {
   function handleNavToggle() {
     const navElement = document.querySelector('nav');
     const mainElement = document.querySelector('main');
-    const burger = document.querySelector('nav .hamburger');
     if (navElement?.classList.contains("activePhone")) {
       navElement?.classList.add("phone-fade-out");
       setTimeout(() => {
