@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react"
 import SetActive from './SetActive'
 import { useRouter } from 'next/navigation'
 import Preloader from './Preloader'
+import Link from 'next/link'
 
 
 type props = {
@@ -69,7 +70,7 @@ const Header: React.FC<props> = ({className = '', page = "Whimsy Decor", title =
               <p>We design homes that buzz with purpose and harmony, inspired by the natural efficiency of a hive—where every space has a role and every detail brings warmth to your family.</p>
               <div className="btns">
                 <button className="gold">Start Project</button>
-                <button className="white">Learn More</button>
+                <Link href="#home-sct-1"><button className="white">Learn More</button></Link>
               </div>
             </div>
           </div>

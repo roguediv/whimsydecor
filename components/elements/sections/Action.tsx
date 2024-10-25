@@ -1,5 +1,6 @@
 'use client'
 import Image from "next/image";
+import BtnForm from "../forms/BtnForm";
 
 type Props = {
   className?: string;
@@ -28,7 +29,7 @@ const Action: React.FC<Props> = ({ className = '', src='', blur="Lets Work Toget
               width={1000}
               height={1000}
               alt={`Preview Icon for ${title}`} />
-              <button>{button2}</button>
+              <BtnForm form='ContactForm' text='Connect' />
           </div>
         </div>
       </div>

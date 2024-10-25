@@ -17,7 +17,6 @@ const BtnForm : React.FC<props> = ({className = '', form, text="Join Mailing Lis
         contactFormElement.classList.remove("init");
         contactFormElement.classList.add("show");
         const mainElement = document.querySelector('main');
-        mainElement?.classList.add("nav-active")
       }
     }}>
       {text}

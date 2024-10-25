@@ -12,7 +12,15 @@ export async function disableScroll() {
 export async function enableScroll() {
   // Retrieve the saved scroll position from the body style
   const scrollPosition = parseInt(document.body.style.top || '0', 10);
-
+  
+  // enable scrolling to be smooth most of the time
+  const scrollElement : HTMLHtmlElement | null = document.querySelector("html");
+  if (scrollElement) {
+    scrollElement.classList.add("notSmooth");
+    setTimeout(() => {
+      scrollElement.classList.remove("notSmooth");
+    }, 100)
+  }
   // Reset the body style and scroll to the saved position
   document.body.style.position = '';
   document.body.style.top = '';
