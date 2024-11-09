@@ -6,8 +6,8 @@ import Button from "@/components/elements/html/Button";
 import { getSession } from "@/components/scripts/auth/sessionManager";
 import LoginCheckServer from "@/components/parts/cms/main/LoginCheckServer";
 import { endQuery } from "@/components/scripts/database/queries";
-
 const db = new PrismaClient();
+
 export default async function ProjectPage() {
   if (!await getSession()) {return(<LoginCheckServer/>)}
 

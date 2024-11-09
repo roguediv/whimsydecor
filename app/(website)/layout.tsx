@@ -3,6 +3,8 @@ import Nav from "@/components/main/Nav";
 import Footer from "@/components/main/Footer";
 import ContactForm from "@/components/elements/forms/ContactForm";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: {
     default: 'WhimsyDecor - Home Sweet Hive',

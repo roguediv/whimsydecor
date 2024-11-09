@@ -1,4 +1,3 @@
-import ProjectPreview from "@/components/elements/cards/ProjectPreview";
 import Hexcon from "@/components/elements/icons/Hexcon";
 import Action from "@/components/elements/sections/Action";
 import ShowProjects from "@/components/elements/sections/ShowProjects";
