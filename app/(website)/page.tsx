@@ -100,3 +100,4 @@ export default async function Home() {
     </div>
   );
 }
+export const fetchCache = 'force-no-store';
