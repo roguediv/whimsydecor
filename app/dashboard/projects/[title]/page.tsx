@@ -12,9 +12,10 @@ import { PrismaClient, Project } from "@prisma/client";
 
 const db = new PrismaClient()
 
-export default async function AdminPage({params}: {params: {title: string}}) {
-  if (!await getSession()) {return(<LoginCheckServer/>)}
-  
+export default async function AdminPage(props: {params: Promise<{title: string}>}) {
+  const params = await props.params;
+  if (!(await getSession())) {return(<LoginCheckServer/>)}
+
   let project : Project | null = null;
   if (!isNaN(Number(params.title))) {
     project = await db.project.findUnique({
