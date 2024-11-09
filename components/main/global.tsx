@@ -16,3 +16,5 @@ export const GlobalPhoneAnchor: React.FC<props> = async ({}) => {
   }
   return <a className="contact-link" href={`tel:+1${user?.phone ? user.phone : ''}`}>{phoneString}</a>
 }
+
+export const GlobalWebDomain = 'https://webapp.jacobmiranda.com';

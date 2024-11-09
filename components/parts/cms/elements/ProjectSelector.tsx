@@ -4,6 +4,7 @@ import Image from "next/image";
 import Button from "@/components/elements/html/Button";
 import { PrismaClient, Project } from "@prisma/client";
 import ActiveButton from "@/components/elements/html/ActiveButton";
+import { GlobalWebDomain } from "@/components/main/global";
 
 const db = new PrismaClient();
 
@@ -19,10 +20,10 @@ const ProjectSelector: React.FC<props> = ({className = '', project}) => {
         <div className="order"><MdDragIndicator /></div>
         <div className="image">
           <Image               
-            src={project.img1 ? `/images/uploads/${project.img1}`: `/images/error.webp`}
+            src={project.img1 ? `${GlobalWebDomain}/images/uploads/${project.img1}`: `/images/error.webp`}
             width={400}
             height={400}
-            alt={`Project image for ${project.title.replace("/nl", "")}`} />
+            alt={`${project.img1Desc}`} />
         </div>
         <div className="text">
           <h5>{project.title.replace("/nl", "")}</h5>

@@ -4,6 +4,7 @@ import ShowProjects from "@/components/elements/sections/ShowProjects";
 import Header from "@/components/main/Header";
 import Image from "next/image";
 import { PrismaClient } from "@prisma/client";
+import { GlobalWebDomain } from "@/components/main/global";
 const db = new PrismaClient();
 
 export default async function Home() {
@@ -77,7 +78,7 @@ export default async function Home() {
               <div className="css-hexagon shadow"></div>
               <div className="css-hexagon image">
                 <Image 
-                  src={testimonial?.img1 ? `/images/uploads/${testimonial.img1}` : '/images/error.webp'}
+                  src={testimonial?.img1 ? `${GlobalWebDomain}/images/uploads/${testimonial.img1}` : '/images/error.webp'}
                   width={500}
                   height={500}
                   alt={`Beautiful Interior Design`}/>

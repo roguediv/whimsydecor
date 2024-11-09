@@ -3,6 +3,7 @@ import ProjectPreview from "../cards/ProjectPreview";
 import Link from "next/link";
 import { FaGreaterThan } from "react-icons/fa";
 import { Project } from "@prisma/client";
+import { GlobalWebDomain } from "@/components/main/global";
 
 type Props = {
   className?: string;
@@ -44,20 +45,20 @@ const Action: React.FC<Props> = ({ className = '', small=false, projects = null}
           <div className="two-grid">
             <div className="image">
               <Image 
-                src={featuredProject.img1? `/images/uploads/${featuredProject.img1}` : '/images/error.webp'}
+                src={featuredProject.img1? `${GlobalWebDomain}/images/uploads/${featuredProject.img1}` : '/images/error.webp'}
                 width={700}
                 height={700}
-                alt={`Beautiful Interior Design`}/>
+                alt={`${featuredProject.img1Desc}`}/>
               <Image 
-                src={featuredProject.img2? `/images/uploads/${featuredProject.img2}` : '/images/error.webp'}
+                src={featuredProject.img2? `${GlobalWebDomain}/images/uploads/${featuredProject.img2}` : '/images/error.webp'}
                 width={300}
                 height={300}
-                alt={`Beautiful Interior Design`}/>
+                alt={`${featuredProject.img2Desc}`}/>
               <Image 
-                src={featuredProject.img3? `/images/uploads/${featuredProject.img3}` : '/images/error.webp'}
+                src={featuredProject.img3? `${GlobalWebDomain}/images/uploads/${featuredProject.img3}` : '/images/error.webp'}
                 width={300}
                 height={300}
-                alt={`Beautiful Interior Design`}/>
+                alt={`${featuredProject.img3Desc}`}/>
             </div>
             <div className="p-2">
               <h5>Featured Project</h5>

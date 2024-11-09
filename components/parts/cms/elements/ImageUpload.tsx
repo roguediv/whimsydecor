@@ -1,5 +1,6 @@
 "use client"
 import TextInput from "@/components/elements/html/TextInput";
+import { GlobalWebDomain } from "@/components/main/global";
 import { StartInfoForm } from "@/components/scripts/client/popup/InfoHandler";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -21,7 +22,7 @@ const ImageUpload: React.FC<props> = ({className = '', id = 'image', title="titl
 
   useEffect(() => {
     if (src) {
-      setImagePreview(`/images/uploads/${src.replaceAll('\\', '/')}`)
+      setImagePreview(`${GlobalWebDomain}/images/uploads/${src.replaceAll('\\', '/')}`)
       setImageTitle(`${(src.split('\\')[src.split('\\').length - 1]).split('_')[1]}`)
       setImageSize("Image Uploaded");
     }
