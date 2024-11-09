@@ -1,4 +1,3 @@
-'use client'
 import Image from "next/image";
 import ProjectPreview from "../cards/ProjectPreview";
 import Link from "next/link";

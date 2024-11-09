@@ -1,5 +1,3 @@
-import Logo from "@/components/elements/icons/Logo";
-import Preloader from "@/components/main/Preloader";
 import ProjectSelector from "@/components/parts/cms/elements/ProjectSelector";
 import CMSHeader from "@/components/parts/cms/main/CmsHeader";
 import { prismaExecutionService } from "@/components/scripts/database/PrismaExecutionService";
