@@ -48,7 +48,11 @@ export async function handleImageUpload(file: File, Path: string): Promise<Retur
 
 export function deleteFile(filePath : string) {
   try {
-    const fullPath = path.join(pathToUploadFolder, 'uploads', filePath.replaceAll('/', '\\'));
+    let fullPath = path.join (pathToUploadFolder, 'uploads');
+    let filePathArray = filePath.split('/');
+    filePathArray.forEach(pathItem => {
+      fullPath = path.join(fullPath, pathItem)
+    })
     
     // Check if the file exists
     if (!fs.existsSync(fullPath)) {
