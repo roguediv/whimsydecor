@@ -4,6 +4,7 @@ import sharp from 'sharp';
 import { ReturnField } from './interface';
 
 const pathToUploadFolder = path.join(process.cwd(), '..', 'media', 'whimsydecor');
+const maxFileSize = 20 * 1024 * 1024;
 
 export async function handleImageUpload(file: File, Path: string): Promise<ReturnField> {
   if (file === undefined) {
@@ -12,9 +13,10 @@ export async function handleImageUpload(file: File, Path: string): Promise<Retur
 
   // Validate file type
   const validFileTypes = ['image/jpeg', 'image/png'];
-  if (!validFileTypes.includes(file.type)) {
-    return { status: 0, title: `Invalid File Type: ${file.type}`, desc: "Only JPEG and PNG files are allowed.", data: null };
-  }
+  if (!validFileTypes.includes(file.type)) return { status: 0, title: `Invalid File Type: ${file.type}`, desc: "Only JPEG and PNG files are allowed.", data: null };
+  
+  // Check file size
+  if (file.size > maxFileSize) return { status: 0, title: "File Too Large", desc: "The file exceeds the 20MB size limit.", data: null };
 
   // Generate a unique file name and set the file path
   const [folder, id] = Path.split('/');
