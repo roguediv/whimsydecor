@@ -9,7 +9,7 @@ import bcrypt from 'bcrypt';
 const db = new PrismaClient();
 type ProjectKeys = keyof Project;
 type TestimonialKeys = keyof Testimonial;
-
+const maxFilesSize = 50 * 1024 * 1024;
 
 export function endQuery(title: string, desc: string) {
   //prismaExecutionService.endQuery();
@@ -73,6 +73,18 @@ export async function updateProject(Project: Project, ImgFormData: FormData): Pr
   /// Handle uploading images
   const imageKeys: string[] = [];
   ImgFormData.forEach((_, key) => { imageKeys.push(key); });
+  
+  // check upload load is under max load
+  let totalSize = 0;
+  for (const key of imageKeys) {
+    if (!key.includes('Desc')) {
+      totalSize += (ImgFormData.get(`${key}`) as File).size
+      if (totalSize > maxFilesSize) {
+        return endQuery("Images too large", "The max you can upload at one time is 50mb, with no image being over 20mb.");
+      }
+    }
+  }
+
   for (const key of imageKeys) {
     if (isError) break; // Break the loop if there's already an error
     if (key.includes('Desc')) {
@@ -172,6 +184,17 @@ export async function updateTestimonial(Testimonial: Testimonial | null, ImgForm
   /// Handle uploading images
   const imageKeys: string[] = [];
   ImgFormData.forEach((_, key) => { imageKeys.push(key); });
+  // check upload load is under max load
+  let totalSize = 0;
+  for (const key of imageKeys) {
+    if (!key.includes('Desc')) {
+      totalSize += (ImgFormData.get(`${key}`) as File).size
+      if (totalSize > maxFilesSize) {
+        return endQuery("Images too large", "The max you can upload at one time is 50mb, with no image being over 20mb.");
+      }
+    }
+  }
+
   for (const key of imageKeys) {
     if (isError) break; // Break the loop if there's already an error
     if (key.includes('Desc')) {
