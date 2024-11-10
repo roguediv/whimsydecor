@@ -1,14 +1,14 @@
 .Popup {
   z-index: 1000;
   position: fixed;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.3);
   top: 0;left: 0;
   display: grid;
   place-items: center;
   .backdrop {
-    width: 100vw;height:100vh;
+    width: 100vw;height:100dvh;
     position: absolute;
     top: 0;left: 0;
     z-index:0;
@@ -28,7 +28,7 @@
     width: 100vw;
     display: grid;
     grid-template-rows: min-content 1fr;
-    max-height: 100vh;
+    max-height: 100dvh;
     @media(max-width: $phone) {
       height: 100%;
     }
@@ -68,7 +68,7 @@
       padding: var(--gap-2) var(--gap-1);
       display: grid;
       gap: var(--gap-1);
-      max-height: 100vh;
+      max-height: 100dvh;
       overflow-y: scroll;
       overflow-x: hidden;
       max-height: 100%;
