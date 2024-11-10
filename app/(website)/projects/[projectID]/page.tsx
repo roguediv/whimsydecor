@@ -2,11 +2,10 @@ import Action from "@/components/elements/sections/Action";
 import ShowProjects from "@/components/elements/sections/ShowProjects";
 import Header from "@/components/main/Header";
 import Image from "next/image";
-import { notFound } from 'next/navigation';
 import { generateLongDesc, generateTitle } from "@/components/scripts/client/htmlGenerator";
 import { Metadata } from "next";
 import { PrismaClient, Project } from "@prisma/client";
-import { GlobalWebDomain } from "@/components/main/global";
+import { GlobalUploadURL} from "@/components/main/global";
 const db = new PrismaClient();
 
 export const metadata: Metadata = {
@@ -101,42 +100,42 @@ export default async function Page(props: {params: Promise<{projectID: string}>}
               </div>
             </div>
             <Image 
-              src={project.img2 ? `${GlobalWebDomain}/images/uploads/${project.img2}` :`/images/error.webp`}
+              src={project.img2 ? `${GlobalUploadURL}${project.img2}` :`/images/error.webp`}
               width={500}
               height={500}
               alt={`${project.img2Desc}`}/> 
             <Image 
-              src={project.img3 ? `${GlobalWebDomain}/images/uploads/${project.img3}` : `/images/error.webp`}
+              src={project.img3 ? `${GlobalUploadURL}${project.img3}` : `/images/error.webp`}
               width={500}
               height={500}
               alt={`${project.img3Desc}`}/> 
             <Image 
-              src={project.img4 ? `${GlobalWebDomain}/images/uploads/${project.img4}` : `/images/error.webp`}
+              src={project.img4 ? `${GlobalUploadURL}${project.img4}` : `/images/error.webp`}
               width={500}
               height={500}
               alt={`${project.img4Desc}`}/> 
             <Image 
-              src={project.img5 ? `${GlobalWebDomain}/images/uploads/${project.img5}` : `/images/error.webp`}
+              src={project.img5 ? `${GlobalUploadURL}${project.img5}` : `/images/error.webp`}
               width={500}
               height={500}
               alt={`${project.img5Desc}`}/> 
             <Image 
-              src={project.img6 ? `${GlobalWebDomain}/images/uploads/${project.img6}` : `/images/error.webp`}
+              src={project.img6 ? `${GlobalUploadURL}${project.img6}` : `/images/error.webp`}
               width={500}
               height={500}
               alt={`${project.img6Desc}`}/> 
             <Image 
-              src={project.img7 ? `${GlobalWebDomain}/images/uploads/${project.img7}` : `/images/error.webp`}
+              src={project.img7 ? `${GlobalUploadURL}${project.img7}` : `/images/error.webp`}
               width={500}
               height={500}
               alt={`${project.img7Desc}`}/> 
             <Image 
-              src={project.img8 ? `${GlobalWebDomain}/images/uploads/${project.img8}` : `/images/error.webp`}
+              src={project.img8 ? `${GlobalUploadURL}${project.img8}` : `/images/error.webp`}
               width={500}
               height={500}
               alt={`${project.img8Desc}`}/> 
             <Image 
-              src={project.img9 ? `${GlobalWebDomain}/images/uploads/${project.img9}` : `/images/error.webp`}
+              src={project.img9 ? `${GlobalUploadURL}${project.img9}` : `/images/error.webp`}
               width={500}
               height={500}
               alt={`${project.img9Desc}`}/> 

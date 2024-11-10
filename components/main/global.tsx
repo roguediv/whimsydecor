@@ -18,3 +18,4 @@ export const GlobalPhoneAnchor: React.FC<props> = async ({}) => {
 }
 
 export const GlobalWebDomain = 'https://webapp.jacobmiranda.com';
+export const GlobalUploadURL = `${GlobalWebDomain}/media/uploads/`

@@ -3,6 +3,8 @@ import path from 'path';
 import sharp from 'sharp';
 import { ReturnField } from './interface';
 
+const pathToUploadFolder = '..\\media\\whimsydecor'
+
 export async function handleImageUpload(file: File, Path: string): Promise<ReturnField> {
   if (file === undefined) {
     return { status: 0, title: "No File", desc: "Please select a file to upload.", data: null };
@@ -17,7 +19,7 @@ export async function handleImageUpload(file: File, Path: string): Promise<Retur
   // Generate a unique file name and set the file path
   const [folder, id] = Path.split('/');
   const fileName = `${Date.now()}_${file.name}`;
-  const uploadDir = path.join(process.cwd(), 'public', 'images', 'uploads', folder, id);
+  const uploadDir = path.join(process.cwd(), pathToUploadFolder, 'uploads', folder, id);
   const fullPath = path.join(uploadDir, fileName);
   const filePath = path.join(folder, id, fileName); // Full path to save the file
 
@@ -46,7 +48,7 @@ export async function handleImageUpload(file: File, Path: string): Promise<Retur
 
 export function deleteFile(filePath : string) {
   try {
-    const fullPath = path.join(process.cwd(), 'public', 'images', 'uploads', filePath.replaceAll('/', '\\'));
+    const fullPath = path.join(process.cwd(), pathToUploadFolder, 'uploads', filePath.replaceAll('/', '\\'));
     
     // Check if the file exists
     if (!fs.existsSync(fullPath)) {
