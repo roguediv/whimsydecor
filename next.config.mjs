@@ -3,18 +3,18 @@ const nextConfig = {
   images: {
     domains: ['webapp.jacobmiranda.com'], // Add your domain here
   },
-  async headers() {
-    return [
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '50mb',
+    },
+  },
+  images: {
+    remotePatterns: [
       {
-        source: '/images/uploads/:path*', // Matches all images in the uploads directory
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-store', // Ensures the browser does not cache images
-          },
-        ],
+        protocol: 'https',
+        hostname: 'webapp.jacobmiranda.com',
       },
-    ];
+    ],
   },
 };
 

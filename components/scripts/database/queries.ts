@@ -92,20 +92,15 @@ export async function updateProject(Project: Project, ImgFormData: FormData): Pr
           break;
         }
       }
-      try {
-
-        res = await handleImageUpload(file, `projects/${Project.projectID}`);
-        if (res.status === 1) {
-          projectDataArray[key as ProjectKeys] = res.data; // Store the uploaded file path
-          let imgDesc = ImgFormData.get(`${key}Desc`) as string;
-          if (validateString(imgDesc).status !== 1) imgDesc = `${file.name.split('.')[0]}`;
-          projectDataArray[`${key}Desc` as ProjectKeys] = imgDesc as any;
-        } else {
-          isError = true; // Set error flag if upload fails
-          break; // Break the loop on error
-        }
-      } catch {
-        isError = true;
+      res = await handleImageUpload(file, `projects/${Project.projectID}`);
+      if (res.status === 1) {
+        projectDataArray[key as ProjectKeys] = res.data; // Store the uploaded file path
+        let imgDesc = ImgFormData.get(`${key}Desc`) as string;
+        if (validateString(imgDesc).status !== 1) imgDesc = `${file.name.split('.')[0]}`;
+        projectDataArray[`${key}Desc` as ProjectKeys] = imgDesc as any;
+      } else {
+        isError = true; // Set error flag if upload fails
+        break; // Break the loop on error
       }
     }
   }
