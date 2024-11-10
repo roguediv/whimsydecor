@@ -196,6 +196,7 @@
           }
           svg:nth-child(2) {
             animation: form-slide-svg-phone ease-in-out 1s 1;
+            transform: translate(-2px, calc(100vh - 5rem));
             transform: translate(-2px, calc(100dvh - 5rem));
           }
           >div {
@@ -251,11 +252,13 @@
           transform: translate(-2px, calc(var(--gap-4) * -1));
         }
         100% {
+          transform: translate(-2px, calc(100vh - 5rem));
           transform: translate(-2px, calc(100dvh - 5rem));
         }
       }
       @keyframes form-slide-div-phone {
         0% {
+          transform: translate(0, calc(-100vh + 2px - var(--gap-4)));
           transform: translate(0, calc(-100dvh + 2px - var(--gap-4)));
         }
         100% {

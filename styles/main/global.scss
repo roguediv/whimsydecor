@@ -518,7 +518,8 @@ html {
   overflow-x: hidden;
   scroll-behavior: smooth;
   display: grid;
-  max-height: 100dvh;
+  max-height: 100vh;
+  max-height: 100svh;
   position: sticky;
   &.notSmooth {
     scroll-behavior: auto;
@@ -526,7 +527,8 @@ html {
 }
 body {
   width: 100vw;
-  height: 100dvh;
+  height: 100vh;
+  height: 100svh;
   background: linear-gradient(
       to bottom,
       transparent,

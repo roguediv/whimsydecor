@@ -1,6 +1,7 @@
 header {
   position: relative;
-  height: 100dvh;
+  height: 100vh;
+  height: 100svh;
   min-height: 800px;
   @media (max-width: $phone) {
     height: min-content;
