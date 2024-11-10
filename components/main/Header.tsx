@@ -5,6 +5,7 @@ import SetActive from './SetActive'
 import { useRouter } from 'next/navigation'
 import Preloader from './Preloader'
 import Link from 'next/link'
+import { GlobalUploadURL } from './global'
 
 
 type props = {
@@ -154,7 +155,7 @@ const Header: React.FC<props> = ({className = '', page = "Whimsy Decor", title =
           <Preloader/>
           <div className="background">
           <Image priority
-            src={src && src != "background.jpg" ? `/images/uploads/${src}` : '/images/error.webp'}
+            src={src && src != "background.jpg" ? `${GlobalUploadURL}${src}` : '/images/error.webp'}
             width={1500}
             height={1500}
             alt="Chair"/> 
