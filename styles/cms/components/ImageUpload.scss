@@ -3,7 +3,8 @@
   border: 3px dashed var(--teal-200);
   display: grid;
   place-items: center;
-  width: 30%;
+  width: 100%;
+  max-width: 500px; 
   border-radius: 10px;
   padding: var(--gap-4) 0;
   position: relative;
