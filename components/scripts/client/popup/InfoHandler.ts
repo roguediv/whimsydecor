@@ -6,6 +6,7 @@ export interface InfoTag {
 };
 
 export function StartInfoForm(tags:InfoTag, isClosable: boolean = false) {
+  resetInfoForm();
   var infoForm = document.getElementById('InfoForm');
   if (infoForm) {
     if (!isClosable) infoForm.classList.add('noClose');
@@ -23,6 +24,7 @@ export function StartInfoForm(tags:InfoTag, isClosable: boolean = false) {
 }
 
 export function StartInputCheck(tags:{title: string, desc: string, btn1: string, btn2: string}) {
+  resetInfoForm();
   var infoForm = document.getElementById('InfoForm');
   if (!infoForm) return;
   infoForm.classList.remove('noClose');
@@ -62,7 +64,6 @@ export function UpdateInfoForm(tags:InfoTag, isClosable: boolean = true, success
     title.innerText = tags.title
     desc.innerText = tags.desc
   }
-  
 }
 
 export function CloseInfoForm() {
