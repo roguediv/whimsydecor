@@ -8,7 +8,7 @@ import { GlobalUploadURL } from "@/components/main/global";
 const db = new PrismaClient();
 
 export default async function Home() {
-  const projects = await db.project.findMany({where: {isLive: true}})
+  const projects = await db.project.findMany({where: {isLive: true}, orderBy: {order: 'asc'}})
   const testimonial = await db.testimonial.findFirst();
   return (
     <div id="pge-home">

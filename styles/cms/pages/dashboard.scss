@@ -1,8 +1,5 @@
 .dashboard {
   position: fixed;
-  .ProjectSelectorGroup {
-    display: grid;gap: var(--gap-3);
-  }
   header {
     height: auto;
     min-height: unset;

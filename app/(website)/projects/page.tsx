@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
 
 export default async function Home() {
-  const projects = await db.project.findMany({where: {isLive: true}});
+  const projects = await db.project.findMany({where: {isLive: true}, orderBy: {order: 'asc'}});
   return (
     <div id="pge-projects">
       <Header page="project" />

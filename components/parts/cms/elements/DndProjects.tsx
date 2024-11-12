@@ -1,0 +1,155 @@
+'use client'
+import { Project } from "@prisma/client";
+import Image from "next/image";
+import ProjectSelector from "@/components/parts/cms/elements/ProjectSelector";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import { MdDragIndicator } from "react-icons/md";
+import { GlobalUploadURL } from "@/components/main/global";
+import Link from "next/link";
+import { startTransition, useOptimistic, useState } from "react";
+import Button from "@/components/elements/html/Button";
+import ActiveButton from "@/components/elements/html/ActiveButton";
+import { prismaExecutionService } from "@/components/scripts/database/PrismaExecutionService";
+import { StartInputCheck } from "@/components/scripts/client/popup/InfoHandler";
+import { endClientQuery } from "@/components/scripts/database/clientQueries";
+
+type props = {
+  className?: string;
+  Projects: Project[];
+  orderTrigger: (projects: Project[]) => Promise<Project[]>;
+  deleteTrigger: (projectID: number) => Promise<void>;
+  favoriteTrigger: (projectID: number) => Promise<boolean>;
+}
+
+const DndProjects: React.FC<props> = ({className = '', Projects, orderTrigger, deleteTrigger, favoriteTrigger}) => {
+  const awaitUserInput = () => {
+    return new Promise<number>((resolve) => {
+      const interval = setInterval(() => {
+        var infoForm = document.getElementById('InfoForm');
+        function breakInterval(value: number) {
+          clearInterval(interval);
+          resolve(value);
+        }
+        if (!infoForm) return breakInterval(0) // If form doesn't exist, return a no response
+        let response = Number(infoForm.dataset.response); // Get form response
+        if (isNaN(response)) breakInterval(response); // Ensure response is a number
+        if (response != -1) breakInterval(response); // If user has responded, send response
+      }, 500);
+    });
+  };
+  const [projects, setProjects] = useState(Projects.sort((a, b) => a.order - b.order));
+  const [optimisticState, swapOptimistic] = useOptimistic(
+    projects,
+    (state, { sourceId, destinationId}) => {
+      const sourceIndex = state.findIndex((project) => project.order === sourceId)
+      const destinationIndex = state.findIndex((project) => project.order === destinationId)
+      const newState = [...state];
+      newState[sourceIndex] = state[destinationIndex];
+      newState[destinationId] = state[sourceIndex]
+      return newState;
+    }
+  )
+  const onDragEnd = async (result: any) => {
+    if (!prismaExecutionService.startQuery()) return;
+    const {destination, source, draggableId} = result
+    if (!destination) return endClientQuery();
+    let newProjects = Array.from(projects);
+
+    const draggedProject = newProjects.find(obj => obj.order === source.index);
+    const targetProject = newProjects.find(obj => obj.order === destination.index);
+    if (!draggedProject || !targetProject) return endClientQuery();
+    const draggedProjectOrder = draggedProject.order;
+    draggedProject.order = targetProject.order;
+
+    newProjects = newProjects.map(project => {
+      if (draggedProjectOrder < targetProject.order) {
+        if (project.order > draggedProjectOrder && project.order <= targetProject.order) {
+          return { ...project, order: project.order - 1 };
+        }
+      } else {
+        if (project.order < draggedProjectOrder && project.order >= targetProject.order) {
+          return { ...project, order: project.order + 1 };
+        }
+      }
+      return project;
+    });
+
+    newProjects = newProjects.map(p => p.projectID === draggedProject.projectID ? draggedProject : p);
+    newProjects = newProjects.sort((a, b) => a.order - b.order);
+    setProjects(newProjects);
+    setProjects((await orderTrigger(newProjects)).sort((a, b) => a.order - b.order));
+    endClientQuery();
+  }
+  return (
+    <>
+    <DragDropContext onDragEnd={onDragEnd} >
+      <Droppable droppableId={"1"}>
+        {(provided) => (<div className="ProjectSelectorGroup" ref={provided.innerRef} {...provided.droppableProps}>
+          {projects.map((project, i) => {
+            return <Draggable key={i} draggableId={`${i}`} index={project.order}>{(provided) => (
+              <div className="ProjectSelector" id={`ProjectSelector-${project.projectID}`} ref={provided.innerRef} {...provided.draggableProps}>
+                <div className="content">
+                  <div className="order" {...provided.dragHandleProps}><MdDragIndicator /></div>
+                  <div className="image">
+                    <Image               
+                      src={project.img1 ? `${GlobalUploadURL}${project.img1}`: `/images/error.webp`}
+                      width={400}
+                      height={400}
+                      alt={`${project.img1Desc}`} />
+                  </div>
+                  <div className="text">
+                    <h5>{project.title.replace("/nl", "")}</h5>
+                    <p className="v2">{project.shortDesc}</p>
+                  </div>
+                </div>
+                <div className="btns">
+                  <button onClick={async () => {
+                    if (!prismaExecutionService.startQuery()) return;
+                    StartInputCheck({title: `Delete ${project.title.replace("/nl", "")}?`, desc: `Are you sure you want to delete ${project.title.replace("/nl", "")}? You cannot undo this action.`, btn1: "Delete Post", btn2: "Cancel"})
+                    const userResponse = await awaitUserInput();
+                    if (userResponse === 0) return endClientQuery();
+                    document.getElementById(`ProjectSelector-${project.projectID}`)?.remove()
+                    await deleteTrigger(project.projectID); 
+                    endClientQuery();
+                  }}>
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.666 25L16.666 20" strokeWidth="3.5" strokeLinecap="round"/><path d="M23.334 25L23.334 20" strokeWidth="3.5" strokeLinecap="round"/><path d="M5 11.6667H35V11.6667C33.6036 11.6667 32.9053 11.6667 32.344 11.8632C31.3387 12.2149 30.5482 13.0054 30.1964 14.0108C30 14.5721 30 15.2703 30 16.6667V26.3334C30 29.6332 30 31.2832 28.9749 32.3083C27.9497 33.3334 26.2998 33.3334 23 33.3334H17C13.7002 33.3334 12.0503 33.3334 11.0251 32.3083C10 31.2832 10 29.6332 10 26.3334V16.6667C10 15.2703 10 14.5721 9.80359 14.0108C9.4518 13.0054 8.66134 12.2149 7.65598 11.8632C7.09467 11.6667 6.39645 11.6667 5 11.6667V11.6667Z" strokeWidth="3.5" strokeLinecap="round"/><path d="M16.7809 5.61765C16.9708 5.44046 17.3893 5.28388 17.9714 5.17221C18.5536 5.06053 19.2669 5 20.0007 5C20.7344 5 21.4477 5.06053 22.0299 5.17221C22.612 5.28388 23.0305 5.44046 23.2204 5.61765" strokeWidth="3.5" strokeLinecap="round"/></svg>
+                  </button>
+                  <button id={`btn-projectFavoriteSelector-${project.projectID}`} className={`project-selector-favorite-button ${project.isFeatured ? 'active' : ''}`} onClick={async () => {
+                    if (!prismaExecutionService.startQuery()) return;
+                    const thisButton : HTMLButtonElement = document.getElementById(`btn-projectFavoriteSelector-${project.projectID}`) as HTMLButtonElement;
+                    if (!thisButton) return endClientQuery();
+                  
+                    thisButton.classList.toggle('active');
+                    const buttons = document.querySelectorAll('.project-selector-favorite-button')
+                    buttons.forEach(btn => {
+                      if (thisButton !== btn) btn.classList.remove('active');
+                    });
+                  
+                    const isActive = await favoriteTrigger(project.projectID);
+                    console.log(isActive);
+                    
+                    buttons.forEach(btn => {
+                      if (thisButton !== btn) btn.classList.remove('active');
+                    });
+                    if (isActive) {
+                      thisButton.classList.add('active');
+                    }
+                    
+                    endClientQuery();
+                  }}>
+                    <svg width="34" height="33" viewBox="0 0 34 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9072 7.54581C15.2183 4.27748 15.8738 2.64331 17.001 2.64331C18.1282 2.64331 18.7837 4.27748 20.0947 7.54581L20.1557 7.698C20.8964 9.54445 21.2667 10.4677 22.0215 11.0288C22.7762 11.59 23.767 11.6787 25.7485 11.8562L26.1067 11.8882C29.3498 12.1787 30.9713 12.3239 31.3182 13.3555C31.6652 14.3872 30.461 15.4827 28.0526 17.6739L27.2488 18.4052C26.0296 19.5144 25.42 20.069 25.1359 20.7959C25.0829 20.9315 25.0388 21.0704 25.004 21.2117C24.8172 21.9695 24.9958 22.774 25.3528 24.3832L25.4639 24.884C26.12 27.8413 26.4481 29.3199 25.8753 29.9576C25.6612 30.196 25.3831 30.3675 25.074 30.4519C24.247 30.6775 23.0729 29.7208 20.7246 27.8073C19.1827 26.5508 18.4117 25.9226 17.5265 25.7813C17.1784 25.7257 16.8236 25.7257 16.4754 25.7813C15.5902 25.9226 14.8192 26.5508 13.2773 27.8073C10.929 29.7208 9.75491 30.6775 8.92791 30.4519C8.61888 30.3675 8.3407 30.196 8.12666 29.9576C7.55386 29.3199 7.88192 27.8413 8.53804 24.884L8.64917 24.3832C9.00619 22.774 9.18469 21.9695 8.99794 21.2117C8.9631 21.0704 8.91904 20.9315 8.86604 20.7959C8.58191 20.069 7.97233 19.5144 6.75315 18.4052L5.94935 17.6739C3.54094 15.4827 2.33674 14.3872 2.6837 13.3555C3.03067 12.3239 4.65218 12.1787 7.8952 11.8882L8.25343 11.8562C10.235 11.6787 11.2257 11.59 11.9805 11.0288C12.7352 10.4677 13.1055 9.54445 13.8462 7.698L13.9072 7.54581Z" strokeWidth="3.5"/></svg>
+                  </button>
+                  <Link href={`/dashboard/projects/${project.projectID}`}><svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 10.25L6.75 26L6 34.25L14.25 33.5L30 17.75C32.0711 15.6789 32.0711 12.3211 30 10.25C27.9289 8.17893 24.5711 8.17894 22.5 10.25Z" strokeWidth="3.5" strokeLinejoin="round"/></svg></Link>
+                </div>
+              </div>
+          )}</Draggable>
+          })}
+          {provided.placeholder}
+        </div>)}
+      </Droppable>
+    </DragDropContext>
+    </>
+  )
+}
+
+export default DndProjects
