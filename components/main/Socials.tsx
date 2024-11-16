@@ -5,15 +5,16 @@ import { TbBrandFacebook } from "react-icons/tb";
 
 type props = {
   className?: string;
+  socialLinks?: string[];
   isSvg?: boolean;
 }
 
-const NavLinks: React.FC<props> = ({className = '', isSvg = false}) => {
+const NavLinks: React.FC<props> = ({className = '', socialLinks = ["#", "#", "#"], isSvg = false}) => {
   return (
     <div className={isSvg ? "icons" : "Socials"}>
-      <Link href="#"><TbBrandFacebook /></Link>
-      <Link href="#"><FaInstagram /></Link>
-      <Link href="#"><FaPinterestP /></Link>
+      <Link href={socialLinks[0] != null ? socialLinks[0] : "#"} target="_blank"><TbBrandFacebook /></Link>
+      <Link href={socialLinks[1] != null ? socialLinks[1] : "#"} target="_blank"><FaInstagram /></Link>
+      <Link href={socialLinks[2] != null ? socialLinks[2] : "#"} target="_blank"><FaPinterestP /></Link>
     </div>
   )
 }

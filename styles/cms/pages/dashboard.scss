@@ -22,10 +22,17 @@
       background-color: var(--neutral-300);
       color: var(--neutral-500);
       font-weight: 300;
-      &.active, &:hover {
+      &.active {
         background-color: var(--orange-100);
         color: var(--neutral-500);
         border-color: transparent;
+      }
+      @media (min-width: $phone) {
+        &:hover {
+          background-color: var(--orange-100);
+          color: var(--neutral-500);
+          border-color: transparent;
+        }
       }
     }
   }
@@ -150,6 +157,9 @@
       }
     }
   }
+  .cms-wrapper section .sct-content .text {
+    >button:not(.custom) {display: flex;align-items: center;gap: var(--gap-1);svg {font-size: 25px;};max-width: max-content;}
+  }
   @media (min-width: $phone) {
     grid-template-columns: max-content 1fr;
     grid-template-rows: 112px 1fr;
@@ -171,7 +181,7 @@
         left: 0;
         width: max-content;
         padding: 0;
-        height: 100vh;
+        height: 100dvh;
         place-items: baseline;
         background-color: var(--teal-400);
         .scroller-contain {
@@ -197,7 +207,7 @@
             .nav-wrapper {
               margin-left: 0;
               //margin-top: var(--gap-3);
-              max-height: calc(100vh - 112px);
+              max-height: calc(100dvh - 112px);
               overflow-y: scroll;
               position: relative;
               display: grid;
@@ -244,7 +254,7 @@
       position: relative;
       padding: var(--gap-3);width: auto;
       overflow-y: scroll;
-      height: calc(100vh - var(--gap-3) - 5rem);
+      height: calc(100dvh - var(--gap-3) - 5rem);
       .sct-content {
         position: relative;
 
@@ -264,7 +274,6 @@
   }
   @media (max-width: $phone) {
     grid-template-rows: min-content 1fr min-content;
-    max-height: 100vh;
     header {
       .content {
         position: relative; 

@@ -260,6 +260,9 @@ export async function updateUser(User: Partial<User>, FormData: FormData): Promi
   if (user.name !== User.name) userDataArray.name = User.name;
   if (user.email !== User.email) userDataArray.email = User.email;
   if (user.phone !== User.phone) userDataArray.phone = User.phone;
+  if (user.facebook !== User.facebook && User.facebook != '') userDataArray.facebook = User.facebook;
+  if (user.instagram !== User.instagram && User.instagram != '') userDataArray.instagram = User.instagram;
+  if (user.pinterest !== User.pinterest && User.pinterest != '') userDataArray.pinterest = User.pinterest;
 
   /// Handle sensitive password data
   let passwordOld = FormData.get('passwordOld') as string
@@ -289,6 +292,18 @@ export async function updateUser(User: Partial<User>, FormData: FormData): Promi
         break;
       case 'password':
         res = validatePassword(userDataArray.password as string);
+        if (res.status == 0) isError = true;
+        break;
+      case 'facebook':
+        res = validateString(userDataArray.facebook as string, "Facebook Social");
+        if (res.status == 0) isError = true;
+        break;
+      case 'instagram':
+        res = validateString(userDataArray.instagram as string, "Instagram Social");
+        if (res.status == 0) isError = true;
+        break;
+      case 'pinterest':
+        res = validateString(userDataArray.pinterest as string, "Pinterest Social");
         if (res.status == 0) isError = true;
         break;
       default:

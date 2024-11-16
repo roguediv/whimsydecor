@@ -9,7 +9,7 @@ export const generateLongDesc = (text: string): string => {
   // Replace keys with corresponding HTML tags
   let html = text
     .replace(/\/nl/g, '</p><p class="v2" >') // New Paragraph
-    .replace(/##(.*?)##/g, '<h4>$1</h4>') // Title
+    .replace(/##(.*?)##/g, '<h4>$1</h4><p class="v2">') // Title
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold Text
 
   if (!html.startsWith('<p')) {

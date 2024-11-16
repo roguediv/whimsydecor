@@ -11,9 +11,10 @@ import Brand from '../elements/icons/Brand'
 
 type props = {
   className?: string;
+  socialLinks?: string[];
 }
 
-const Nav: React.FC<props> = ({className = ''}) => {
+const Nav: React.FC<props> = ({className = '', socialLinks}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   
   useEffect(() => {
@@ -99,7 +100,7 @@ const Nav: React.FC<props> = ({className = ''}) => {
             <div className="nav-wrapper">
               <NavLinks />
               <BtnForm className='gold' form='ContactForm' text='Connect' />
-              <Socials/>
+              <Socials socialLinks={socialLinks}/>
             </div>
             <div className="phone">
               <div className="hamburger" onClick={handleNavToggle}>

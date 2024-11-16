@@ -1,7 +1,8 @@
 .cms {
   background-color: var(--neutral-100);
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  top: 0;
   section {
     padding: var(--gap-sides);
     .sct-content {

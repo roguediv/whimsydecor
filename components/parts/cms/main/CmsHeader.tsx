@@ -169,6 +169,9 @@ const CMSHeader: React.FC<props> = ({className = '', page = "home", title = page
             const iptSettingsName : HTMLInputElement = document.getElementById('iptSettingsName') as HTMLInputElement;
             const iptSettingsEmail : HTMLInputElement = document.getElementById('iptSettingsEmail') as HTMLInputElement;
             const iptSettingsPhone : HTMLTextAreaElement = document.getElementById('iptSettingsPhone') as HTMLTextAreaElement;
+            const iptSettingsFacebook : HTMLTextAreaElement = document.getElementById('iptSettingsFacebook') as HTMLTextAreaElement;
+            const iptSettingsInstagram : HTMLInputElement = document.getElementById('iptSettingsInstagram') as HTMLInputElement;
+            const iptSettingsPinterest : HTMLInputElement = document.getElementById('iptSettingsPinterest') as HTMLInputElement;
             const iptSettingsPasswordOld : HTMLInputElement = document.getElementById('iptSettingsPasswordOld') as HTMLInputElement;
             const iptSettingsPasswordNew : HTMLInputElement = document.getElementById('iptSettingsPasswordNew') as HTMLInputElement;
             
@@ -179,6 +182,9 @@ const CMSHeader: React.FC<props> = ({className = '', page = "home", title = page
             if (iptSettingsName) User.name = iptSettingsName.value;
             if (iptSettingsEmail) User.email = iptSettingsEmail.value;
             if (iptSettingsPhone) User.phone = iptSettingsPhone.value;
+            if (iptSettingsFacebook && iptSettingsEmail.value != '') User.facebook = iptSettingsFacebook.value;
+            if (iptSettingsInstagram) User.instagram = iptSettingsInstagram.value;
+            if (iptSettingsPinterest) User.pinterest = iptSettingsPinterest.value;
             if (iptSettingsPasswordOld) formData.append("passwordOld", iptSettingsPasswordOld.value);
             if (iptSettingsPasswordNew) formData.append("passwordNew", iptSettingsPasswordNew.value);
 
@@ -191,6 +197,9 @@ const CMSHeader: React.FC<props> = ({className = '', page = "home", title = page
               if (rtn.title.includes('Name')) iptSettingsName.classList.add('inputError');
               if (rtn.title.includes('Email')) iptSettingsEmail.classList.add('inputError');
               if (rtn.title.includes('phone')) iptSettingsPhone.classList.add('inputError');
+              if (rtn.title.includes('Facebook')) iptSettingsFacebook.classList.add('inputError');
+              if (rtn.title.includes('Instagram')) iptSettingsInstagram.classList.add('inputError');
+              if (rtn.title.includes('Pinterest')) iptSettingsPinterest.classList.add('inputError');
               if (rtn.title.includes('Old Password')) iptSettingsPasswordOld.classList.add('inputError');
               else if (rtn.title.includes('Password')) iptSettingsPasswordNew.classList.add('inputError');
             }

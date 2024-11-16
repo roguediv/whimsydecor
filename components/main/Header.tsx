@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import Preloader from './Preloader'
 import Link from 'next/link'
 import { GlobalUploadURL } from './global'
+import BtnForm from '../elements/forms/BtnForm'
 
 
 type props = {
@@ -70,7 +71,7 @@ const Header: React.FC<props> = ({className = '', page = "Whimsy Decor", title =
               <h1>Home<br />Sweet<br />Hive</h1>
               <p>We design homes that buzz with purpose and harmony, inspired by the natural efficiency of a hive—where every space has a role and every detail brings warmth to your family.</p>
               <div className="btns">
-                <button className="gold">Start Project</button>
+                <BtnForm className='gold' form='ContactForm' text='Start Project' />
                 <Link href="#home-sct-1"><button className="white">Learn More</button></Link>
               </div>
             </div>

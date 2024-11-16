@@ -52,6 +52,10 @@ export default async function AdminPage(props: {params: Promise<{title: string}>
             <p>Create new projects by adding a title, short description, detailed description, selecting the services provided, upload images, and choose if this will be a featured project. Changes will not be saved unless you select "Publish" in the upper corner.</p>
           </div>
           <div className="text">
+            <ul>
+              <li><b>Key:</b></li>
+              <li>New Line: <b>/nl</b></li>
+            </ul>
             <TextInput id="iptProjectTitle" placeholder="Project Title" loadText={project?.title.replaceAll("/nl", "/nl")}/>
             <div className="flex gap-2">
               <div className="flex">
@@ -79,7 +83,7 @@ export default async function AdminPage(props: {params: Promise<{title: string}>
             </ul>
             <AutoTextarea className="large" id="iptProjectLongDesc" placeholder="Description of Project*" loadText={project?.longDesc.replaceAll("/np", "/np")}/>
             <div className="imageList">
-            <ImageUpload id="iptProjectImg1" src={project?.img1} imgDesc={project?.img1Desc} />
+            <ImageUpload className="iptProjectImg1" id="iptProjectImg1" src={project?.img1} imgDesc={project?.img1Desc} />
             <ImageUpload id="iptProjectImg2" src={project?.img2} imgDesc={project?.img2Desc} />
             <ImageUpload id="iptProjectImg3" src={project?.img3} imgDesc={project?.img3Desc} />
             <ImageUpload id="iptProjectImg4" src={project?.img4} imgDesc={project?.img4Desc} />

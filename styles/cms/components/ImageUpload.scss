@@ -8,6 +8,7 @@
   border-radius: 10px;
   padding: var(--gap-4) 0;
   position: relative;
+  &.iptProjectImg1 {max-width: 100%;}
   .text {
     padding: var(--gap-2);
     display: grid;

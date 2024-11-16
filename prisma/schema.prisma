@@ -19,6 +19,9 @@ model User {
   name     String
   email    String    @unique
   phone    String?   @unique
+  facebook    String?
+  instagram    String?
+  pinterest    String?
   password String
   slt      String
   access   Int
@@ -30,9 +33,9 @@ model User {
 model Project {
   projectID   Int @id @default(autoincrement())
   userID      Int 
-  title       String @default("Project Title")
-  shortDesc   String @db.VarChar(500) @default("Undefined Summary")
-  longDesc    String @db.VarChar(2000) @default("Undefined Description")
+  title       String @default("")
+  shortDesc   String @db.VarChar(500) @default("")
+  longDesc    String @db.VarChar(2000) @default("")
   projectDate DateTime? @default(now())
   isFeatured  Boolean @default(false)
   isLive  Boolean @default(false)  
@@ -56,6 +59,7 @@ model Project {
   img7Desc    String?
   img8Desc    String?
   img9Desc    String?
+
   createdDate  DateTime @default(now())
 
   user User @relation(fields: [userID], references: [userID])  

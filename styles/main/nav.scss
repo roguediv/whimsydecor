@@ -95,7 +95,7 @@ nav {
     .Socials {
       a {
         @media (max-width: 400px) {
-          &:nth-child(1), &:nth-child(1) {display: none;}
+          //&:nth-child(1), &:nth-child(1) {display: none;}
         }
       }
     }

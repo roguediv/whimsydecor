@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import BtnForm from "../forms/BtnForm";
+import Link from "next/link";
 
 type Props = {
   className?: string;
@@ -21,7 +22,7 @@ const Action: React.FC<Props> = ({ className = '', src='', blur="Lets Work Toget
             <h5>{blur}</h5>
             <h2>{title}</h2>
             <p>{desc}</p>
-            <button className="white">{button1}</button>
+            <Link href="/about"><button className="white">{button1}</button></Link>
           </div>
           <div className="image">
             <Image 

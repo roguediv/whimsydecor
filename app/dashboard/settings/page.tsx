@@ -1,5 +1,6 @@
 import Button from "@/components/elements/html/Button";
 import TextInput from "@/components/elements/html/TextInput";
+import ToggleList from "@/components/elements/html/ToggleList";
 import CMSHeader from "@/components/parts/cms/main/CmsHeader";
 import LoginCheckServer from "@/components/parts/cms/main/LoginCheckServer";
 import { getSession, logout } from "@/components/scripts/auth/sessionManager";
@@ -18,6 +19,9 @@ export default async function SettingsPage() {
       email: true,
       phone: true,
       access: true,
+      facebook: true,
+      instagram: true,
+      pinterest: true,
     }});
   }
   
@@ -35,9 +39,15 @@ export default async function SettingsPage() {
             <TextInput id="iptSettingsName" placeholder="Name" loadText={user?.name}/>
             <TextInput id="iptSettingsEmail" placeholder="Email Address" loadText={user?.email}/>
             <TextInput id="iptSettingsPhone" placeholder="Phone Number" loadText={user?.phone ? user.phone : ''}/>
-            <p className="v2">Change Password:</p>
-            <TextInput id="iptSettingsPasswordOld" placeholder="Old Password" />
-            <TextInput id="iptSettingsPasswordNew" placeholder="New Password" />
+            <ToggleList title="Social Media Links" textInputs={[
+              {placeHolder: "Facebook", id: "iptSettingsFacebook", loadText: user?.facebook as string},
+              {placeHolder: "Instagram", id: "iptSettingsInstagram", loadText: user?.instagram as string},
+              {placeHolder: "Pinterest", id: "iptSettingsPinterest", loadText: user?.pinterest as string},
+            ]} />
+            <ToggleList title="Update Password" textInputs={[
+              {placeHolder: "Old Password", id: "iptSettingsPasswordOld"},
+              {placeHolder: "New Password", id: "iptSettingsPasswordNew"},
+            ]} />
             <Button className="no-margin" icon="exit" text="Log Out" RedirectTrigger={async (test : number) => {
               "use server"
               if (test === 0) return {status: 1, title: '', desc: '', data: '1'};

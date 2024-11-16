@@ -13,6 +13,9 @@
     .two-grid, .three-grid {
       gap: var(--gap-4);
     }
+    .featuredHover:hover ~ div .featuredHover, .featuredHover:hover {
+      color: var(--neutral-300) !important;
+    }
     .two-grid {
       &.small-header {display: flex; justify-content:space-between;}
       .image {
@@ -27,6 +30,7 @@
           &:nth-child(1) {
             height: 100%;
             position: relative;
+            max-height: 350px;
           }
           &:nth-child(2), &:nth-child(3) {
             z-index: 1;
@@ -58,6 +62,11 @@
           transform: translate(30%, 80%);
           width: 100px;
         }
+      }
+    }
+    .three-grid {
+      @media (min-width: $phone) {
+        margin-top: var(--gap-1);
       }
     }
   }

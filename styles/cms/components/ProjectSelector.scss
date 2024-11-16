@@ -39,7 +39,8 @@
         overflow: hidden;              /* Hide overflowed content */
         text-overflow: ellipsis;       /* Show '...' when text overflows */
         line-height: 1.3em;            /* Adjust the line height */
-        max-height: 5.2em;     
+        //max-height: 5.2em;
+        height: 5.2em;
       }
     }
     .order {

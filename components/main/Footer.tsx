@@ -5,9 +5,10 @@ import Brand from "../elements/icons/Brand";
 
 type props = {
   className?: string;
+  socialLinks?: string[];
 }
 
-const Footer: React.FC<props> = ({className = ''}) => {
+const Footer: React.FC<props> = ({className = '', socialLinks}) => {
   return (
     <footer className={`theme-dark ${className}`}>
       <div className="wrapper">
@@ -18,7 +19,7 @@ const Footer: React.FC<props> = ({className = ''}) => {
           <p>St. Louis, United States, MO</p>
         </div>
         <div className="p-2">
-          <Socials />
+          <Socials socialLinks={socialLinks} />
           <NavLinks />
           {/* <p>&copy; {new Date().getFullYear()} WhimsyDecor</p> */}
         </div>

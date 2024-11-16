@@ -33,6 +33,11 @@
         position: relative;
         width: 60px; height: 50px;
         background: var(--col-main);
+        display: grid;
+        place-items: center;
+        svg {
+          width: 80%;height: 80%;
+        }
       }
     }
   }

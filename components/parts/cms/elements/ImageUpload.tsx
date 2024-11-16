@@ -55,7 +55,7 @@ const ImageUpload: React.FC<props> = ({className = '', id = 'image', title="titl
     if (fileInputRef.current) fileInputRef.current.value = '';
   }
   return (
-    <div className={`ImageUpload ${imageTitle != null ? 'isSet' : ''}`}>
+    <div className={`ImageUpload ${imageTitle != null ? 'isSet' : ''} ${className}`}>
       <input id={id} ref={fileInputRef} type="file" aria-label={`File upload for ${id}`} onChange={handleFileChange}/>
       {imageTitle ? (<></>) : (<>
       <label htmlFor={id} className="text">

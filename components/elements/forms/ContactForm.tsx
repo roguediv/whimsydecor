@@ -69,16 +69,16 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
         <div className="side">
           <div className="desktop">
             <div className="image">
-              <Image src={`/images/sections/form/desktop-side.png`}width={1500}height={1500}alt={`Beautiful Interior`}/>
+              <Image priority src={`/images/sections/form/desktop-side.png`}width={1500}height={1500}alt={`Beautiful Interior`}/>
             </div>
             <div className="hexagon-image tilt">
-              <div className="image"><Image src={`/images/sections/form/desktop-hex-1.png`}width={500}height={500}alt={`Beautiful Interior`}/></div>
+              <div className="image"><Image priority src={`/images/sections/form/desktop-hex-1.png`}width={500}height={500}alt={`Beautiful Interior`}/></div>
             </div>
             <div className="hexagon-image tilt">
-              <div className="image"><Image src={`/images/sections/form/desktop-hex-2.png`}width={500}height={500}alt={`Beautiful Interior`}/></div>
+              <div className="image"><Image priority src={`/images/sections/form/desktop-hex-2.png`}width={500}height={500}alt={`Beautiful Interior`}/></div>
             </div>
           </div>
-          <div className="mobile"><Image src={`/images/sections/form/mobile-side.png`}width={1500}height={1500}alt={`Beautiful Interior`}/></div>
+          <div className="mobile"><Image priority src={`/images/sections/form/mobile-side.png`}width={1500}height={1500}alt={`Beautiful Interior`}/></div>
         </div>
         <div className="content">
           <div className="slide-in">
