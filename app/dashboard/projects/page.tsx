@@ -7,6 +7,7 @@ import { getSession } from "@/components/scripts/auth/sessionManager";
 import LoginCheckServer from "@/components/parts/cms/main/LoginCheckServer";
 import { endQuery } from "@/components/scripts/database/queries";
 import DndProjects from "@/components/parts/cms/elements/DndProjects";
+import { deleteFile } from "@/components/scripts/database/uploadHandler";
 const db = new PrismaClient();
 
 export default async function ProjectPage() {
@@ -72,6 +73,14 @@ export default async function ProjectPage() {
               return await db.project.findMany({ orderBy: { order: 'asc' } });
             }} deleteTrigger={async (projectID : number) => {
                     "use server"
+                    const project : Project | null = await db.project.findUnique({where: {projectID: projectID}});
+                    if (!project) return;
+                    for (let i = 0; i < 10; i++) {
+                      const imageSrc = project[`img${i}` as keyof Project]
+                      if (imageSrc) {
+                        deleteFile(imageSrc as string);
+                      }
+                    }
                     await db.project.delete({
                       where: {
                         projectID: projectID,

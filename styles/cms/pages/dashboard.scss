@@ -27,6 +27,10 @@
         color: var(--neutral-500);
         border-color: transparent;
       }
+      &:hover {
+        background-color: var(--neutral-300);
+        color: var(--neutral-500);
+      }
       @media (min-width: $phone) {
         &:hover {
           background-color: var(--orange-100);
