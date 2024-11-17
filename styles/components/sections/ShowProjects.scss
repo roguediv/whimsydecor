@@ -17,6 +17,9 @@
       color: var(--neutral-300) !important;
     }
     .two-grid {
+      @media (max-width: $phone) {
+        gap: var(--gap-2);
+      }
       &.small-header {display: flex; justify-content:space-between;}
       .image {
         width: 100%;
@@ -53,6 +56,10 @@
           margin-top: 40px;
         }
         @media(min-width: $phone) {padding-bottom: var(--gap-4);}
+        a {
+          display: grid;
+          gap: 8px;
+        }
         h5 {color: var(--orange-100);}
         p {z-index: 2;}
         svg {
@@ -65,8 +72,8 @@
       }
     }
     .three-grid {
+      margin-top: var(--gap-4);
       @media (min-width: $phone) {
-        margin-top: var(--gap-1);
       }
     }
   }
