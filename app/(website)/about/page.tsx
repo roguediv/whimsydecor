@@ -78,15 +78,15 @@ export default async function Home() {
             </div>
             <div className="css-hexagon num num-2">2</div>
             <div className="text p-4">
-              <h5>Initial Consultation</h5>
-              <h4>Discover Your Vision</h4>
-              <p>We begin with a phone call to understand your design vision and budget. Then, we schedule an in-home visit to take measurements, review what will stay, and get a feel for your style and space.</p>
+              <h5>At-Home Consultation</h5>
+              <h4>Defining Your Space</h4>
+              <p>During the in-home visit, we assess the layout, take measurements, and note which elements stay. This step sets the foundation for a well-planned, personalized design.</p>
             </div>
 
             <div className="text p-5">
-              <h5>Initial Consultation</h5>
-              <h4>Discover Your Vision</h4>
-              <p>We begin with a phone call to understand your design vision and budget. Then, we schedule an in-home visit to take measurements, review what will stay, and get a feel for your style and space.</p>
+              <h5>Mock-Up & Design Collaboration</h5>
+              <h4>Visualizing the Dream</h4>
+              <p>We create a 3D mock-up of your space, offering multiple swatch options. You'll be involved in every decision, with one revision included to ensure the design fits your vision</p>
             </div>
             <div className="css-hexagon num num-3">3</div>
             <div className="css-hexagon hex p-6">
@@ -110,15 +110,15 @@ export default async function Home() {
             </div>
             <div className="css-hexagon num num-4">4</div>
             <div className="text p-8">
-              <h5>Initial Consultation</h5>
-              <h4>Discover Your Vision</h4>
-              <p>We begin with a phone call to understand your design vision and budget. Then, we schedule an in-home visit to take measurements, review what will stay, and get a feel for your style and space.</p>
+              <h5>Purchasing & Finalizing</h5>
+              <h4>Making It Official</h4>
+              <p>After approving the design, we finalize product selections and place orders. If custom craftsmanship is required, we coordinate those services.</p>
             </div>
 
             <div className="text p-9">
-              <h5>Initial Consultation</h5>
-              <h4>Discover Your Vision</h4>
-              <p>We begin with a phone call to understand your design vision and budget. Then, we schedule an in-home visit to take measurements, review what will stay, and get a feel for your style and space.</p>
+              <h5>Installation & completion </h5>
+              <h4>The Big Reveal</h4>
+              <p>We handle the installation, placing every piece with care. Once complete, we walk through the finished space with you, ensuring it meets your expectations.</p>
             </div>
             <div className="css-hexagon num num-5">5</div>
             <div className="css-hexagon hex p-10">
