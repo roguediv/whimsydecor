@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/main/Nav";
 import Footer from "@/components/main/Footer";
 import ContactForm from "@/components/elements/forms/ContactForm";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 const db = new PrismaClient();
 
 export const dynamic = "force-dynamic";
@@ -20,7 +20,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await db.user.findFirst({where: {access: 1}, select: {
+  const user : Partial<User> | null = await db.user.findFirst({where: {access: 1}, select: {
     userID: true,
     name: true,
     email: true,
