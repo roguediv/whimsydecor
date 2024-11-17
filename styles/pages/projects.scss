@@ -24,6 +24,10 @@
         }
         &:nth-child(3n + 1)  {
           transform: translate(20%, 52%);
+          &:last-child {
+            grid-column: 2;
+            transform: translate(0, 0);
+          }
         }
         &:nth-child(3n + 3) {
           transform: translate(-20%, 52%);
