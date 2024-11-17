@@ -27,7 +27,7 @@
         color: var(--neutral-500);
         border-color: transparent;
       }
-      &:hover {
+      &:hover&:not(.active) {
         background-color: var(--neutral-300);
         color: var(--neutral-500);
       }
