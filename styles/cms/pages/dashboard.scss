@@ -27,9 +27,13 @@
         color: var(--neutral-500);
         border-color: transparent;
       }
-      &:hover&:not(.active) {
-        background-color: var(--neutral-300);
-        color: var(--neutral-500);
+      &:hover {
+        &:not(.active) {
+          border-color: var(--neutral-300);
+          background-color: var(--neutral-300);
+          color: var(--neutral-500);
+
+        }
       }
       @media (min-width: $phone) {
         &:hover {
