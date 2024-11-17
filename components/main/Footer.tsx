@@ -20,7 +20,7 @@ const Footer: React.FC<props> = ({className = '', socialLinks}) => {
         </div>
         <div className="p-2">
           <Socials socialLinks={socialLinks} />
-          <NavLinks />
+          <NavLinks /> 
           {/* <p>&copy; {new Date().getFullYear()} WhimsyDecor</p> */}
         </div>
       </div>

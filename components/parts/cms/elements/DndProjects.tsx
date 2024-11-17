@@ -57,7 +57,8 @@ const DndProjects: React.FC<props> = ({className = '', Projects, orderTrigger, d
 
     const draggedProject = newProjects.find(obj => obj.order === source.index);
     const targetProject = newProjects.find(obj => obj.order === destination.index);
-    if (!draggedProject || !targetProject) return endClientQuery();
+
+    if (!draggedProject || !targetProject || draggedProject === targetProject) return endClientQuery();
     const draggedProjectOrder = draggedProject.order;
     draggedProject.order = targetProject.order;
 

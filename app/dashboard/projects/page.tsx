@@ -28,6 +28,11 @@ export default async function ProjectPage() {
               "use server"
               Projects = Projects.sort((a, b) => a.projectID - b.projectID)
               const dbProjects = await db.project.findMany({ orderBy: { projectID: 'asc' } });
+
+              /// Ensure the session is valid and store the user
+              const session = await getSession();
+              if (!session) return dbProjects;
+              if (!session.user.access || session.user.access < 1) return dbProjects;
                       
               // First, validate that there are no duplicate orders in Projects array
               const orderSet = new Set(Projects.map((p) => p.order));
@@ -60,7 +65,6 @@ export default async function ProjectPage() {
                     });
                   } else {
                     console.log(`Order didn't work: ${clientProject.order}`);
-
                   }
                 }
               });
