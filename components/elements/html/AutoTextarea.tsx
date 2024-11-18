@@ -30,7 +30,7 @@ const AutoTextarea = forwardRef<HTMLTextAreaElement, props>(({className = "", lo
       const textarea = ref.current;
       if (textarea) {
         textarea.style.height = 'auto'; // Reset the height to calculate the actual scroll height
-        textarea.style.height = textarea.scrollHeight + 'px'; // Set the height to the calculated scroll height
+        textarea.style.height = (textarea.scrollHeight + 5) + 'px'; // Set the height to the calculated scroll height
       }
     };
 

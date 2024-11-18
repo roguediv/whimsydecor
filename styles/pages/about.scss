@@ -5,6 +5,9 @@
   background-repeat: repeat;
   background-size: 25%;
   position: relative;
+  @media (max-width: $phone) {
+    background-size: 65%;
+  }
   &:before {
     content: '';
     position: absolute;
@@ -156,6 +159,7 @@
 #about-sct-3 {
   background-color: var(--teal-400);
   color: var(--neutral-white);
+  @media (max-width: $phone) {padding-top: calc(var(--gap-sct) * 2);}
   .sct-content {
     .two-grid {
       @media (min-width: $phone) {

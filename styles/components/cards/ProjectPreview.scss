@@ -1,12 +1,15 @@
 .ProjectPreview {
   --col-background: #111d1d;
-  --col-main: var(--orange-200);
+  --col-main: var(--teal-200);
   display: grid;
   height: min-content;
   gap: var(--gap-1);
+  &:hover {.image img {transform: scale(1.02);}}
   cursor: pointer;
   .image {
     position: relative;
+    height: 250px;
+    @media (max-width: $phone) {margin-bottom: var(--gap-2);}
     &:after {
       content: '';
       position: absolute;
@@ -19,9 +22,9 @@
     }
     img {
       width: 100%;
-      height: auto;
+      height: 250px;
       object-fit: cover;
-      max-height: 250px;
+      transition: var(--transition);
     }
     >.css-hexagon {
       position: absolute;
@@ -37,6 +40,7 @@
         background: var(--col-main);
         display: grid;
         place-items: center;
+        color: var(--neutral-100);
         svg {
           width: 80%;height: 80%;
         }

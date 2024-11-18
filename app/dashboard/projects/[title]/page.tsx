@@ -75,12 +75,14 @@ export default async function AdminPage(props: {params: Promise<{title: string}>
             </div>
             <AutoTextarea id="iptProjectShortDesc" placeholder="One Sentence Summary*" loadText={project?.shortDesc}/>
             <p className="v2">You can make custom edits to the following field. Reference the key below.</p>
+            <p className="v2">
             <ul>
               <li><b>Key:</b></li>
               <li>New Line/Paragraph: <b>/nl</b></li>
               <li>Create a Title: <b>##</b>Title Text Here<b>##</b></li>
               <li>Bold Text: <b>**</b>Bold Text Here<b>**</b></li>
             </ul>
+            </p>
             <AutoTextarea className="large" id="iptProjectLongDesc" placeholder="Description of Project*" loadText={project?.longDesc.replaceAll("/np", "/np")}/>
             <div className="imageList">
             <ImageUpload className="iptProjectImg1" id="iptProjectImg1" src={project?.img1} imgDesc={project?.img1Desc} />

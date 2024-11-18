@@ -216,9 +216,11 @@
               margin-left: 0;
               //margin-top: var(--gap-3);
               max-height: calc(100dvh - 112px);
-              overflow-y: scroll;
               position: relative;
               display: grid;
+              @media (max-height: 500px) {
+                overflow-y: scroll;
+              }
               .NavLinks {
                 display: grid;
                 gap: var(--gap-1);

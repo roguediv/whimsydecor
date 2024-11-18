@@ -37,10 +37,11 @@
 #home-sct-2 {
   background-color: #243333;
   color: white;
+  position: relative;
   background-image: url('/images/bg-hive.png');
   background-repeat: repeat;
   background-size: 25%;
-  position: relative;
+  @media (max-width: $phone) {background-size: 65%;}
   &:after {
     content: '';
     position: absolute;

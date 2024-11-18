@@ -1,8 +1,7 @@
 'use client'
-import React, {forwardRef, useEffect, Ref, useRef, useState } from 'react';
-import { MdKeyboardArrowLeft } from 'react-icons/md';
+import React, {forwardRef, useRef, useState } from 'react';
 import TextInput from './TextInput';
-import { IoIosArrowUp } from 'react-icons/io';
+import { IoChevronDown } from 'react-icons/io5';
 
 type props = {
   className?: string;
@@ -19,7 +18,7 @@ const ToggleList = forwardRef<HTMLTextAreaElement, props>(({className = "", id="
 
   return (
     <ul className={`ToggleList ${isActive ? 'active' : ''}`}>
-      <button className='custom' onClick={() => {setActive(!isActive)}}><IoIosArrowUp />{title}</button>
+      <button className='custom' onClick={() => {setActive(!isActive)}}><IoChevronDown/>{title}</button>
       {textInputs.map((textInput, i) => {
         return (
           <li key={i}><TextInput className={textInput.className} id={textInput.id} loadText={textInput.loadText} placeholder={textInput.placeHolder} name={textInput.name} Trigger={textInput.trigger} /></li>

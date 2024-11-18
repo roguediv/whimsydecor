@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FaGreaterThan } from "react-icons/fa";
 import { Project } from "@prisma/client";
 import { GlobalUploadURL } from "@/components/main/global";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 type Props = {
   className?: string;
@@ -32,7 +33,7 @@ const Action: React.FC<Props> = ({ className = '', small=false, projects = null}
         <>
         <div className="two-grid small-header">
           <h2>Explore More</h2>
-          <Link className="a-orange-100" href="/projects">View All <FaGreaterThan /></Link>
+          <Link className="a-orange-100" href="/projects">View All <MdKeyboardDoubleArrowRight /></Link>
         </div>
         </>
          : <>

@@ -107,7 +107,7 @@
           width: max-content;
           background-color: var(--neutral-300);
           color: var(--neutral-500);
-          font-size: clamp(14px, 3vw + 1px, 17px);
+          font-size: clamp(12px, 3vw - 1px, 15px);
           font-weight: 500;
           width: 100%;
           height: auto;
@@ -124,10 +124,11 @@
             padding: 0 20%;
           }
           svg {
-            width: 50%; height: auto;
+            width: 60%; height: auto;
             stroke: var(--neutral-500);
             transition: var(--transition);
           }
+          &:nth-child(3) svg {width: 70%;}
           // @media (max-width: $phone) {
           //   font-size: 15px;
           //   padding: 12px;

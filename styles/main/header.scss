@@ -350,8 +350,10 @@ header {
       .drips {
         position: absolute;
         top: calc(88% - 4px);
+        left: -50px;
         width: 55%;
         min-width: 700px;
+        height: auto;
       }
       .chair {
         position: absolute;
