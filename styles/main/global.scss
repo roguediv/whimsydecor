@@ -164,6 +164,9 @@ a {
   &.right {margin-left: auto;}
   &.left { margin-right: auto;}
 }
+p a {
+  font-size: inherit;
+}
 p {
   font-size: var(--p-1-size);
   line-height: var(--p-1-hgt);
@@ -289,7 +292,7 @@ button:not(.custom):not(.firebaseui-button) {
 }
 
 /// # Inputs 
-input, textarea {
+input, textarea, select {
   font-size: var(--fnt-h4);
   padding: 8px 12px;
   color: black;
@@ -324,6 +327,9 @@ textarea {
   &.large {
     max-height: 304px;
   }
+}
+select {
+
 }
 .multi-input {
   display: grid;

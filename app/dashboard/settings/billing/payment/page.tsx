@@ -3,6 +3,8 @@ import TextInput from "@/components/elements/html/TextInput";
 import ToggleList from "@/components/elements/html/ToggleList";
 import CMSHeader from "@/components/parts/cms/main/CmsHeader";
 import LoginCheckServer from "@/components/parts/cms/main/LoginCheckServer";
+import Invoice from "@/components/parts/cms/pages/billing/Invoice";
+import StripePayment from "@/components/parts/cms/pages/billing/StripePayment";
 import { getSession, logout } from "@/components/scripts/auth/sessionManager";
 import { updateUser } from "@/components/scripts/database/queries";
 import { PrismaClient, User } from "@prisma/client";
@@ -33,24 +35,13 @@ export default async function SettingsPage() {
       <section>
         <div className="sct-content">
           <div className="sct-header">
-            <h4>Settings Management Center</h4>
-            <p>Manage your CMS login details, including email and password, and update the phone number displayed on the website. Note that changing your CMS email will also update the website contact email and where contact form submissions are sent. Changes will not be saved unless you select "Save" in the upper corner.</p>
+            <h4>Billing</h4>
+            <p>To make this website live, you'll need to select a domain name, choose the professional emails you'd like to associate with your domain, and provide your billing information. Please complete the following fields to finalize the setup of your website.</p>
           </div>
           <div className="text">
-            <Link href="/dashboard/settings/billing"><button>Billing Setup</button></Link>
-            <TextInput id="iptSettingsName" placeholder="Name" loadText={user?.name}/>
-            <TextInput id="iptSettingsEmail" placeholder="Email Address" loadText={user?.email}/>
-            <TextInput id="iptSettingsPhone" placeholder="Phone Number" loadText={user?.phone ? user.phone : ''}/>
-            <ToggleList title="Social Media Links" textInputs={[
-              {placeHolder: "Facebook", id: "iptSettingsFacebook", loadText: user?.facebook as string},
-              {placeHolder: "Instagram", id: "iptSettingsInstagram", loadText: user?.instagram as string},
-              {placeHolder: "Pinterest", id: "iptSettingsPinterest", loadText: user?.pinterest as string},
-            ]} />
-            <ToggleList title="Update Password" textInputs={[
-              {placeHolder: "Old Password", id: "iptSettingsPasswordOld"},
-              {placeHolder: "New Password", id: "iptSettingsPasswordNew"},
-            ]} />
-            <Button className="no-margin" icon="exit" text="Log Out" RedirectTrigger={async (test : number) => {
+            <Invoice />
+            <StripePayment />
+            <Button className="no-margin" icon="none" text="Back" RedirectTrigger={async (test : number) => {
               "use server"
               if (test === 0) return {status: 1, title: '', desc: '', data: '1'};
               await logout();

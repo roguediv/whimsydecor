@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     template: '%s - WhimsyDecor'
   },
   description: 'WhimsyDecor',
+  // other: { 'Content-Security-Policy': "default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *" },
 }
 
 export default function RootLayout({
