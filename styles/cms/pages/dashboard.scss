@@ -181,6 +181,11 @@
     display: grid;
     max-width: 1000px;
 
+    padding: var(--gap-2);
+    border-radius: 10px;
+    border: 1px solid var(--neutral-200);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+
     .header {
       text-transform: uppercase;
       border-top: 1px solid var(--neutral-300);
@@ -189,6 +194,7 @@
       >div {color: var(--neutral-500) !important};
     }
     .total {
+      border-top: 1px solid var(--neutral-300);
       margin-top: var(--gap-2);
       display: grid;
       grid-template-columns: 1fr max-content;
@@ -249,6 +255,14 @@
           
         }
       }
+    }
+  }
+  .StripeCheckout {
+    max-width: 1000px;
+    display: grid;
+    gap: var(--gap-2);
+    button {
+      max-width: max-content;
     }
   }
   .cms-wrapper section .sct-content .text {

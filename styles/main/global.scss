@@ -329,7 +329,13 @@ textarea {
   }
 }
 select {
-
+  height: 56px;
+  background-color: var(--neutral-100);
+  border: 1px solid #b6b6b6;
+  color: #707070;
+  &:focus {
+    color: var(--neutral-500);
+  }
 }
 .multi-input {
   display: grid;

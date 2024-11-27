@@ -6,7 +6,7 @@ export function endClientQuery(title: string = "", desc: string = "") {
   prismaExecutionService.endQuery();
   if (title === '') {
     CloseInfoForm();
-  } else if (title = "end") return null 
-  else StartInfoForm({title: title, desc: desc}, true)
+  } else if (title === "end") return null 
+  else StartInfoForm({title: title, desc: desc}, true);
   return null;
 }

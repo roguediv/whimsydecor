@@ -25,7 +25,7 @@ const ToggleList = forwardRef<HTMLTextAreaElement, props>(({className = "", id="
       {textInputs.map((textInput, i) => {
         if (textInput.placeHolder == 'State') {
           return <li key={i}>
-          <select title="State" defaultValue="" id={textInput.loadText}>
+          <select title="State" defaultValue={textInput.loadText} id={textInput.id}>
             <option value="" disabled>Select a State</option>
             {states.map((state) => (
               <option key={state.abbreviation} value={state.abbreviation}>

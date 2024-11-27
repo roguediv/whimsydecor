@@ -3,18 +3,23 @@ import TextInput from "@/components/elements/html/TextInput";
 import ToggleList from "@/components/elements/html/ToggleList";
 import CMSHeader from "@/components/parts/cms/main/CmsHeader";
 import LoginCheckServer from "@/components/parts/cms/main/LoginCheckServer";
-import Invoice from "@/components/parts/cms/pages/billing/Invoice";
-import StripePayment from "@/components/parts/cms/pages/billing/StripePayment";
+import CptInvoice from "@/components/parts/cms/pages/billing/CptInvoice";
+import SubmitInvoiceButton from "@/components/parts/cms/pages/billing/SubmitInvoiceButton";
 import { getSession, logout } from "@/components/scripts/auth/sessionManager";
+import { CreateInvoice } from "@/components/scripts/database/CreateInvoice";
 import { updateUser } from "@/components/scripts/database/queries";
-import { PrismaClient, User } from "@prisma/client";
-import Link from "next/link";
+import { Invoice, PrismaClient, User } from "@prisma/client";
 const db = new PrismaClient();
 
-export default async function SettingsPage() {
+interface PageProps {
+  searchParams?: { [key: string]: string | undefined }; // Query params will be here
+}
+
+export default async function BillingPage({ searchParams }: { searchParams?: { [key: string]: string } }) {
   const sessionUser = await getSession();
   if (!sessionUser) {return(<LoginCheckServer/>)}
   let user : Partial<User> | null = null;
+  
   if (sessionUser.user) {
     user = await db.user.findUnique({where: {userID: sessionUser.user.userID}, select: {
       userID: true,
@@ -27,26 +32,24 @@ export default async function SettingsPage() {
       pinterest: true,
     }});
   }
+
+  let lastInvoice: Invoice | null = null;
+  const useLastInvoice = searchParams?.useLastInvoice;
+  if (useLastInvoice && user && !isNaN(Number(searchParams?.useLastInvoice))) {
+    lastInvoice = await db.invoice.findUnique({where: {userID: user.userID, invoiceID: Number(searchParams?.useLastInvoice)}})
+  }
   
   return (
     <>
-    <CMSHeader page="settings" user={user} updateUser={updateUser} />
+    <CMSHeader page="settings" title="billing" user={user} updateUser={updateUser} />
     <div className="cms-wrapper">
       <section>
         <div className="sct-content">
           <div className="sct-header">
-            <h4>Billing</h4>
-            <p>To make this website live, you'll need to select a domain name, choose the professional emails you'd like to associate with your domain, and provide your billing information. Please complete the following fields to finalize the setup of your website.</p>
+            <h4>Your Payment was Successful!</h4>
+            <p>Thank you for your payment! You will be emailed an invoice for your purchase. Please give us 24-48 hours to complete the setup of your website and domain registration.</p>
           </div>
           <div className="text">
-            <Invoice />
-            <StripePayment />
-            <Button className="no-margin" icon="none" text="Back" RedirectTrigger={async (test : number) => {
-              "use server"
-              if (test === 0) return {status: 1, title: '', desc: '', data: '1'};
-              await logout();
-              return {status: 1, title: '', desc: '', data: '/admin'}
-            }} />
           </div>
         </div>
       </section>

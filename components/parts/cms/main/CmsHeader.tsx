@@ -15,6 +15,7 @@ type props = {
   title?:string;
   desc?: string;
   src?: string;
+  invoiceID?: number;
   project?: Project | null;
   updateProject?: (Project: Project, imgFormData : FormData) => Promise<ReturnField>;
   testimonial?: Testimonial | null;
@@ -23,7 +24,7 @@ type props = {
   updateUser?: (User: Partial<User>, formData : FormData) => Promise<ReturnField>;
 }
 
-const CMSHeader: React.FC<props> = ({className = '', page = "home", title = page, desc = "", src = "background.jpg", 
+const CMSHeader: React.FC<props> = ({className = '', page = "home", title = page, desc = "", src = "background.jpg", invoiceID = null, 
   project=null, updateProject = () => {return {status: -1, title: "Update project function not loaded.", desc: "", data: null}},
   testimonial=null, updateTestimonial = () => {return {status: -1, title: "Update testimonial function not loaded.", desc: "", data: null}},
   user=null, updateUser = () => {return {status: -1, title: "Update user function not loaded.", desc: "", data: null}},
@@ -154,6 +155,33 @@ const CMSHeader: React.FC<props> = ({className = '', page = "home", title = page
       </>
     )
   } else if (page == "settings") {
+    if (title === "billing") {
+      return (<>
+      <SetActive activeText={page} />
+      <header>
+        <div className={`content interactive`}>
+          <Link href={{
+            pathname: "/dashboard/settings"
+          }}><FaLessThan /></Link>
+          <h2>{title.charAt(0).toUpperCase() + title.slice(1)}</h2>
+        </div>
+      </header>
+      </>)
+    }
+    if (title === "payment") {
+      return (<>
+      <SetActive activeText={page} />
+      <header>
+        <div className={`content interactive`}>
+          <Link href={{
+            pathname: "/dashboard/settings/billing",
+            query: {useLastInvoice: invoiceID}
+          }}><FaLessThan /></Link>
+          <h2>{title.charAt(0).toUpperCase() + title.slice(1)}</h2>
+        </div>
+      </header>
+      </>)
+    }
     return (<>
       <SetActive activeText={page} />
       <header>

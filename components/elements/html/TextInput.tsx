@@ -19,7 +19,7 @@ const TextInput = forwardRef<HTMLTextAreaElement, props>(({className = "", id=""
   return (
     <div className="one text-input ipt">
       <div className="form__group field">
-        <input id={id} name={name != '' ? name : placeholder} type={placeholder.includes("Password") ? "password" : "text"} className="form__field" maxLength={255} placeholder={placeholder} value={inputValue} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+        <input id={id} name={name != '' ? name : placeholder} type={placeholder.includes("Password") ? "password" : "text"} className={`form__field ${className}`} maxLength={255} placeholder={placeholder} value={inputValue} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setInputValue(e.target.value);
         }} />
         <label className="form__label">{placeholder}</label>
