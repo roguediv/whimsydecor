@@ -15,7 +15,6 @@ interface PageProps {
   searchParams?: { [key: string]: string | undefined }; // Query params will be here
 }
 
-<<<<<<< HEAD
 export default async function BillingPage({ searchParams }: PageProps) {
   const params = await searchParams;
 
@@ -37,15 +36,9 @@ export default async function BillingPage({ searchParams }: PageProps) {
   }
 
   let lastInvoice: Invoice | null = null;
-<<<<<<< HEAD
   const useLastInvoice = await params?.useLastInvoice;
   if (useLastInvoice && user && !isNaN(Number(useLastInvoice))) {
     lastInvoice = await db.invoice.findUnique({where: {userID: user.userID, invoiceID: Number(useLastInvoice)}})
-=======
-  const useLastInvoice = searchParams?.useLastInvoice;
-  if (useLastInvoice && user && !isNaN(Number(searchParams?.useLastInvoice))) {
-    lastInvoice = await db.invoice.findUnique({where: {userID: user.userID, invoiceID: Number(searchParams?.useLastInvoice)}})
->>>>>>> 80012c43fe6885917f8626a6cd3677f1685e04d8
   }
   
   return (
@@ -74,7 +67,6 @@ export default async function BillingPage({ searchParams }: PageProps) {
                 <li><p className="v2">whimdec.com</p></li>
               </ul>
             </div>
-<<<<<<< HEAD
             <TextInput id="iptBillingDomainName" placeholder="Preferred Domain" loadText={useLastInvoice ? `${lastInvoice?.domain}` : ""}/>
             <ToggleList title="Contact Info" textInputs={[
               {placeHolder: "First Name", id: "iptBillingFName", loadText: `${useLastInvoice ? `${lastInvoice?.fName}` : ""}`},
@@ -87,20 +79,6 @@ export default async function BillingPage({ searchParams }: PageProps) {
               {placeHolder: "City", id: "iptBillingCity", loadText: `${useLastInvoice ? `${lastInvoice?.city}` : ""}`},
               {placeHolder: "State", id: "iptBillingState", loadText: `${useLastInvoice ? `${lastInvoice?.state}` : ""}`},
               {placeHolder: "Zipcode", id: "iptBillingZipcode", loadText: `${useLastInvoice ? `${lastInvoice?.zipcode}` : ""}`},
-=======
-            <TextInput id="iptBillingDomainName" placeholder="Preferred Domain" loadText={searchParams?.useLastInvoice ? `${lastInvoice?.domain}` : ""}/>
-            <ToggleList title="Contact Info" textInputs={[
-              {placeHolder: "First Name", id: "iptBillingFName", loadText: `${searchParams?.useLastInvoice ? `${lastInvoice?.fName}` : ""}`},
-              {placeHolder: "Last Name", id: "iptBillingLName", loadText: `${searchParams?.useLastInvoice ? `${lastInvoice?.lName}` : ""}`},
-              {placeHolder: "Primary Email Address", id: "iptBillingEmail", loadText: `${searchParams?.useLastInvoice ? `${lastInvoice?.email}` : ""}`},
-              {placeHolder: "Phone Number", id: "iptBillingPhone", loadText: `${searchParams?.useLastInvoice ? `${lastInvoice?.phone}` : ""}`},
-            ]} />
-            <ToggleList title="Billing Address" textInputs={[
-              {placeHolder: "Street Address", id: "iptBillingAddress", loadText: `${searchParams?.useLastInvoice ? `${lastInvoice?.address}` : ""}`},
-              {placeHolder: "City", id: "iptBillingCity", loadText: `${searchParams?.useLastInvoice ? `${lastInvoice?.city}` : ""}`},
-              {placeHolder: "State", id: "iptBillingState", loadText: `${searchParams?.useLastInvoice ? `${lastInvoice?.state}` : ""}`},
-              {placeHolder: "Zipcode", id: "iptBillingZipcode", loadText: `${searchParams?.useLastInvoice ? `${lastInvoice?.zipcode}` : ""}`},
->>>>>>> 80012c43fe6885917f8626a6cd3677f1685e04d8
             ]} />
             <SubmitInvoiceButton SubmitInvoice={CreateInvoice} />
           </div>
