@@ -80,7 +80,7 @@ export default async function BillingPage({
               {placeHolder: "State", id: "iptBillingState", loadText: `${useLastInvoice ? `${lastInvoice?.state}` : ""}`},
               {placeHolder: "Zipcode", id: "iptBillingZipcode", loadText: `${useLastInvoice ? `${lastInvoice?.zipcode}` : ""}`},
             ]} />
-            <SubmitInvoiceButton SubmitInvoice={CreateInvoice} />
+            <SubmitInvoiceButton className="standard" SubmitInvoice={CreateInvoice}/>
           </div>
         </div>
       </section>

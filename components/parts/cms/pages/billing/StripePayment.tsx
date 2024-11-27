@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation";
 import { Invoice } from "@prisma/client";
 import { CloseInfoForm, StartInfoForm } from "@/components/scripts/client/popup/InfoHandler";
+import { FaLock } from "react-icons/fa";
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("Public key not defined");
@@ -118,12 +119,16 @@ const StripeCheckout = ({invoice} : {invoice : Partial<Invoice>}) => {
 
 
   return (
-    <form className="StripeCheckout" onSubmit={handleSubmit}>
-      <CardElement />
-      {errorMessage}
-      <div className="flex">
-        <button type="submit">Complete Payment</button>
+    <form className="StripeCheckout mt" onSubmit={handleSubmit}>
+      <p className="v2"><FaLock /> <b> Secure Checkout Using Stripe</b></p>
+      <p className="v2">Enter your payment details</p>
+      <div className="stripeCard">
+        <CardElement/>
       </div>
+      <p className="v2 error">{errorMessage}</p>
+
+      <button type="submit" className="mt">Complete Payment</button>
+
 
     </form>
   )

@@ -291,7 +291,7 @@ export async function updateUser(User: Partial<User>, FormData: FormData): Promi
         if (res.status == 0) isError = true;
         break;
       case 'password':
-        res = validatePassword(userDataArray.password as string);
+        res = validatePassword(FormData.get('passwordNew') as string);
         if (res.status == 0) isError = true;
         break;
       case 'facebook':

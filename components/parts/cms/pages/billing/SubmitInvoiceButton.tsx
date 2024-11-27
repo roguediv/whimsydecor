@@ -18,7 +18,7 @@ type props = {
 const SubmitInvoiceButton : React.FC<props> = ({className = '', SubmitInvoice = (invoice: Partial<Invoice>) => {return {status: 0, title: "Error", desc: "Error", data: {}}} }) => {
   const router = useRouter();
   return (
-    <button className="SubmitInvoiceButton" onClick={async () => {
+    <button className={`SubmitInvoiceButton ${className}`} onClick={async () => {
       if (!prismaExecutionService.startQuery()) return; // Check if any other db queries are running
       removeAllInputErrors();
       StartInfoForm({title: "Loading...", desc: ""}, false)

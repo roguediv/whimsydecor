@@ -13,7 +13,9 @@ type props = {
 
 const CptInvoice : React.FC<props> = ({className = '', hasDomainEmailSelector = false, invoice=null }) => {
   let emailStartNum = 1;
+  if (invoice) emailStartNum = 0;
   if (invoice && invoice.domainEmails) emailStartNum = invoice.domainEmails.split("|,").length;
+
   const [emailNum, setEmailNum] = useState(emailStartNum);
   const [totalPrice, setTotalPrice] = useState(0);
   const [monthlyPrice, setMonthlyPrice] = useState(0);
@@ -79,7 +81,7 @@ const CptInvoice : React.FC<props> = ({className = '', hasDomainEmailSelector = 
       </div>
       <div>
         <div>Custom Domain Transfer</div>
-        <div>$<div className="price">12.82</div></div>
+        <div>$<div className="price">12.82</div> <span style={{opacity: 0}}>/m</span></div>
       </div>
       <div>
         <div>Website Hosting</div>

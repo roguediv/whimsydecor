@@ -69,20 +69,20 @@ export async function CreateInvoice(Invoice: Partial<Invoice>): Promise<ReturnFi
         res = validateString(invoiceDataArray.domainEmails as string, "domain emails", 1500);
         if (res.status == 0) isError = true;
         break;
-      case 'email':
-        res = validateEmail(invoiceDataArray.email as string);
-        if (res.status == 0) isError = true;
-        break;
-      case 'phone':
-        res = validatePhoneNumber(invoiceDataArray.phone as string);
-        if (res.status == 0) isError = true;
-        break;
       case 'fName':
         res = validateString(invoiceDataArray.fName as string, "first name");
         if (res.status == 0) isError = true;
         break;
       case 'lName':
         res = validateString(invoiceDataArray.lName as string, "last name");
+        if (res.status == 0) isError = true;
+        break;
+      case 'email':
+        res = validateEmail(invoiceDataArray.email as string);
+        if (res.status == 0) isError = true;
+        break;
+      case 'phone':
+        res = validatePhoneNumber(invoiceDataArray.phone as string);
         if (res.status == 0) isError = true;
         break;
       case 'address':

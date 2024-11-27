@@ -218,6 +218,9 @@
       padding: var(--gap-1);
       gap: 1rem;
       font-size: 14px;
+      @media (max-width: $phone) {
+        grid-template-columns: 1fr max-content;
+      }
       &:nth-child(odd) {
         &:not(:first-child) {
           &:not(:last-child) {
@@ -261,12 +264,22 @@
     max-width: 1000px;
     display: grid;
     gap: var(--gap-2);
+    //.stripeCard {height: 56px;}
+    .error {
+      color: var(--error-200);
+    }
     button {
-      max-width: max-content;
+      width: max-content;
+      @media (max-width: $phone) {width: 100%;}
     }
   }
   .cms-wrapper section .sct-content .text {
-    >button:not(.custom) {display: flex;align-items: center;gap: var(--gap-1);svg {font-size: 25px;};max-width: max-content;}
+    >button:not(.custom):not(.standard) {display: flex;align-items: center;gap: var(--gap-1);svg {font-size: 25px;};max-width: max-content;}
+    .btnLogout {
+      background: none;
+      color: var(--teal-200);
+      padding: 0;
+    }
   }
   @media (min-width: $phone) {
     grid-template-columns: max-content 1fr;
@@ -375,8 +388,9 @@
         .text {
           width: 100%;
           max-width: 1500px;
-          >button:not(.custom) {width: max-content;margin: 0 auto;min-width: 300px;margin-top: var(--gap-3);
+          >button:not(.custom):not(.standard) {width: max-content;min-width: 300px;margin-top: var(--gap-3); //margin: 0 auto;
             display: flex;align-items: center;gap: var(--gap-1);svg {font-size: 25px;}}
+          >button {&.standard {max-width: max-content;}}
         }
       }
     }

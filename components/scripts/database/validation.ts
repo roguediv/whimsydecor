@@ -8,7 +8,7 @@ export function validateString(string: string, stringTitle : string = 'String', 
     return { status: 0, title: `${stringTitle.charAt(0).toUpperCase() + stringTitle.slice(1)} too Large`, desc: `${stringTitle.charAt(0).toUpperCase() + stringTitle.slice(1)} exceeds the maximum length of ${maxLength} characters.`, data: null};
   }
   string = string.replace(/[\r\n]+/g, '');
-  const validCharactersRegex = /^[a-zA-Z0-9 .,?!'"();:/#*|-]*$/;
+  const validCharactersRegex = /^[a-zA-Z0-9 .,?!'"();:/#*|&-]*$/;
   if (!validCharactersRegex.test(string)) {
     return { status: 0, title: `Invalid ${stringTitle.charAt(0).toUpperCase() + stringTitle.slice(1)}`, desc: `${stringTitle.charAt(0).toUpperCase() + stringTitle.slice(1)} contains invalid characters. Only alphanumeric characters are allowed.`, data: null};
   }
@@ -129,7 +129,7 @@ export function validatePassword(password: string, maxLength: number = 255): Ret
   }
 
   // Regex for allowed characters (alphanumeric and common symbols)
-  const validCharactersRegex = /^[a-zA-Z0-9 .,?!'"();:/-]*$/;
+  const validCharactersRegex = /^[a-zA-Z0-9 .,?!'"();:/#*|-]*$/;
   if (!validCharactersRegex.test(password)) {
     return { 
       status: 0, 
