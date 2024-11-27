@@ -6,6 +6,7 @@ import LoginCheckServer from "@/components/parts/cms/main/LoginCheckServer";
 import { getSession, logout } from "@/components/scripts/auth/sessionManager";
 import { updateUser } from "@/components/scripts/database/queries";
 import { PrismaClient, User } from "@prisma/client";
+import Link from "next/link";
 const db = new PrismaClient();
 
 export default async function SettingsPage() {
@@ -36,6 +37,7 @@ export default async function SettingsPage() {
             <p>Manage your CMS login details, including email and password, and update the phone number displayed on the website. Note that changing your CMS email will also update the website contact email and where contact form submissions are sent. Changes will not be saved unless you select "Save" in the upper corner.</p>
           </div>
           <div className="text">
+            <Link href="/dashboard/settings/billing"><button>Billing Setup</button></Link>
             <TextInput id="iptSettingsName" placeholder="Name" loadText={user?.name}/>
             <TextInput id="iptSettingsEmail" placeholder="Email Address" loadText={user?.email}/>
             <TextInput id="iptSettingsPhone" placeholder="Phone Number" loadText={user?.phone ? user.phone : ''}/>

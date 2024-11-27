@@ -28,6 +28,7 @@ model User {
   createdDate  DateTime @default(now())
 
   projects Project[] 
+  invoices Invoice[] 
 }
 
 model Project {
@@ -80,4 +81,43 @@ model Testimonial {
   project Project @relation(fields: [projectID], references: [projectID])  
 
   @@index([projectID])
+}
+
+model Invoice {
+  invoiceID       Int @id  @default(autoincrement())  
+  userID          Int      @default(0)
+  subscriptionID  Int?
+  total           Int?
+  monthly         Int?
+  domain          String?
+  domainEmails    String?  @db.VarChar(1500)
+  email           String?  
+  phone           String?
+  fName            String?
+  lName            String?
+  address         String?  @db.VarChar(500)
+  city            String?  
+  state           String?  @db.VarChar(2)
+  zipcode         String?  @db.VarChar(5)
+  createdDate     DateTime @default(now())
+  success         Boolean? @default(false)
+  ipAddress       String?
+
+  user User @relation(fields: [userID], references: [userID])  
+
+  @@index([userID])
+  invoiceFields InvoiceField[] 
+}
+
+model InvoiceField {
+  invoiceFieldID Int @id  @default(autoincrement())  
+  invoiceID Int      @default(0)
+  title String?
+  desc String? @db.VarChar(500)
+  price Int?
+  type Int?
+
+  invoice Invoice @relation(fields: [invoiceID], references: [invoiceID])  
+
+  @@index([invoiceID])
 }

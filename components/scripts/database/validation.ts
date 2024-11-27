@@ -8,7 +8,7 @@ export function validateString(string: string, stringTitle : string = 'String', 
     return { status: 0, title: `${stringTitle.charAt(0).toUpperCase() + stringTitle.slice(1)} too Large`, desc: `${stringTitle.charAt(0).toUpperCase() + stringTitle.slice(1)} exceeds the maximum length of ${maxLength} characters.`, data: null};
   }
   string = string.replace(/[\r\n]+/g, '');
-  const validCharactersRegex = /^[a-zA-Z0-9 .,?!'"();:/#*-]*$/;
+  const validCharactersRegex = /^[a-zA-Z0-9 .,?!'"();:/#*|-]*$/;
   if (!validCharactersRegex.test(string)) {
     return { status: 0, title: `Invalid ${stringTitle.charAt(0).toUpperCase() + stringTitle.slice(1)}`, desc: `${stringTitle.charAt(0).toUpperCase() + stringTitle.slice(1)} contains invalid characters. Only alphanumeric characters are allowed.`, data: null};
   }
@@ -96,7 +96,7 @@ export function validateDate(date: string | Date, minDate: Date = new Date(1900,
 }
 
 export function validatePhoneNumber(phone: string): ReturnField {
-	const phoneRegex = /^\+?[1-9]\d{1,14}$/; // E.164 format
+	const phoneRegex = /^\+?[1-9]\d{9}$/; // E.164 format
 	if (!phoneRegex.test(phone)) {
 			return { status: 0, title: 'Invalid Phone Number', desc: 'Phone number is not valid.', data: null };
 	}
@@ -104,7 +104,7 @@ export function validatePhoneNumber(phone: string): ReturnField {
 }
 
 export function removeAllInputErrors() {
-	document.querySelectorAll('input, textarea').forEach(input => {input.classList.remove('inputError')});
+	document.querySelectorAll('input, textarea, select').forEach(input => {input.classList.remove('inputError')});
 }
 
 export function validatePassword(password: string, maxLength: number = 255): ReturnField {
