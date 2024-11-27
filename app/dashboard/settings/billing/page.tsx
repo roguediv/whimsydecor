@@ -11,11 +11,7 @@ import { updateUser } from "@/components/scripts/database/queries";
 import { Invoice, PrismaClient, User } from "@prisma/client";
 const db = new PrismaClient();
 
-interface PageProps {
-  searchParams?: { [key: string]: string | undefined }; // Query params will be here
-}
-
-export default async function BillingPage({ searchParams }: PageProps) {
+export default async function BillingPage({ searchParams }: { searchParams?: { [key: string]: string | undefined } }) {
   const params = await searchParams;
 
   const sessionUser = await getSession();
