@@ -1,8 +1,20 @@
 #cms-login {
+  display: grid;
+  height: 100dvh;
+  grid-template-rows: 90px 1fr;
+  @media (max-width: $phone) {grid-template-rows: 70px 1fr;}
+
   section {
-    padding-top: 130px;
-    @media (max-width: $phone) {padding-top: 100px;}
+    height: 100%;
+    overflow-y:scroll;
+    grid-row: 2;
+    padding: var(--gap-3) var(--gap-sides);
+    @media (max-width: $phone) {
+      padding: 0;
+      border-radius: 0;
+    }
     .sct-content {
+      max-width: 1000px;
       .text {text-align: center;}
       a {
         width: max-content;
