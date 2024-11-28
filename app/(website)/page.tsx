@@ -49,7 +49,7 @@ export default async function Home() {
             </div>
             <div className="p-6">
               <Hexcon icon="decor" />
-              <h5>Custom Decor</h5>
+              <h5>Home Decor</h5>
               <p>Personalize your home with unique decor.</p>
             </div>
           </div>

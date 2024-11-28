@@ -19,7 +19,7 @@ export default async function Home() {
           <div className="sct-header center">
             <h5>Our Work</h5>
             <h2>Showcasing Whimsy</h2>
-            <p>Whimsy Decor brings spaces to life with vibrant murals, custom decor, and unique designs. From residential to commercial projects, each reflects our signature blend of creativity and craftsmanship. Explore our portfolio below and click to view the details of our one-of-a-kind transformations.</p>
+            <p>Whimsy Decor brings spaces to life with vibrant murals, home decor, and unique designs. From residential to commercial projects, each reflects our signature blend of creativity and craftsmanship. Explore our portfolio below and click to view the details of our one-of-a-kind transformations.</p>
           </div>
           <div className="three-grid">
             {projects.map((project, i) => {

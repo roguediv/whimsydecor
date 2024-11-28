@@ -19,7 +19,7 @@
     >p {flex-basis: 100%;}
     >button {
       padding: .7rem;
-      background-color: var(--neutral-300);
+      background-color: var(--neutral-200);
       color: var(--neutral-500);
       font-weight: 300;
       &.active {
@@ -29,8 +29,8 @@
       }
       &:hover {
         &:not(.active) {
-          border-color: var(--neutral-300);
-          background-color: var(--neutral-300);
+          border-color: var(--neutral-200);
+          background-color: var(--neutral-200);
           color: var(--neutral-500);
 
         }

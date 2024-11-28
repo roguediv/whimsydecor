@@ -19,7 +19,7 @@ export function validateString(string: string, stringTitle : string = 'String', 
 
 export const validServices = [
 	'Interior Redesign',
-	'Custom Decor',
+	'Home Decor',
 	'Floor Plan Layout',
 	'Painting',
 	'Color Consulting',
