@@ -12,7 +12,7 @@ export const ServiceRequest: React.FC<Readonly<props>> = ({
   const tagsArray = tags.split("|,")
   return (
   <div>
-    <h1>You have a new service request!</h1>
+    <h1>Someone new is tring to contact you from Whimsy Decor!</h1>
     <ul>
       <li>Name: {name}</li>
       <li>email: {email}</li>

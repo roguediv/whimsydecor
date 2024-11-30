@@ -25,15 +25,7 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
       }, 1000)
     }
   }
-  function radioClick(button: HTMLElement) {
-    
-    button.classList.toggle('active');
-    if (button.classList.contains('active')) {
-      tags += `${button.textContent}|,`
-    } else {
-      tags = tags.replaceAll(`${button.textContent}|,`, '')
-    }
-  }
+  function radioClick(button: HTMLElement) {button.classList.toggle('active');}
 
   /// Form 1 Inputs
   const form1Inputs = useRef<HTMLInputElement[]>([])
@@ -43,8 +35,6 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
     }
   }
   const form1Textarea1 = useRef<HTMLTextAreaElement | null>(null)
-
-  let tags = ''
 
   const sendContactRequestEmail = async (contactRequestData = {}) => {
     const response = await fetch('/api/sendContactRequest', {
@@ -67,7 +57,22 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
           <svg className="mobile" width="81" height="95" viewBox="0 0 81 95" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M52.2 2.29048e-06L63.5577 6.442L74.8899 12.9276L74.9154 25.8553L74.8899 38.7829L63.5577 45.2685L52.2 51.7105L40.8423 45.2685L29.5101 38.7829L29.4846 25.8553L29.5101 12.9276L40.8423 6.442L52.2 2.29048e-06Z" fill="#137C7D"/><path d="M75.2 43L86.5577 49.442L97.8899 55.9276L97.9154 68.8553L97.8899 81.7829L86.5577 88.2685L75.2 94.7105L63.8423 88.2685L52.5101 81.7829L52.4846 68.8553L52.5101 55.9276L63.8423 49.442L75.2 43Z" fill="url(#paint0_linear_367_1780)"/><path d="M15.339 48.3099L26.2 42.1497L37.061 48.3099L37.0643 48.3118L47.891 54.5082L47.9154 66.8533L47.9154 66.8572L47.891 79.2024L37.0643 85.3987L37.061 85.4006L26.2 91.5609L15.339 85.4006L15.3357 85.3987L4.50899 79.2024L4.4846 66.8572L4.4846 66.8533L4.50899 54.5082L15.3357 48.3118L15.339 48.3099Z" stroke="url(#paint1_linear_367_1780)" strokeWidth="2"/><defs><linearGradient id="paint0_linear_367_1780" x1="-172.225" y1="43" x2="225.111" y2="42.2812" gradientUnits="userSpaceOnUse"><stop stopColor="#8D7F61"/><stop offset="0.151457" stopColor="#F1DCAD"/><stop offset="0.267035" stopColor="#8E7B53"/><stop offset="0.382648" stopColor="#E5D9A9"/><stop offset="0.495657" stopColor="#8A724C"/><stop offset="0.620286" stopColor="#E5D9A9"/><stop offset="0.73364" stopColor="#8E7B53"/><stop offset="0.866263" stopColor="#F1DCAD"/><stop offset="1" stopColor="#8D7F61"/></linearGradient><linearGradient id="paint1_linear_367_1780" x1="-221.225" y1="41" x2="176.111" y2="40.2812" gradientUnits="userSpaceOnUse"><stop stopColor="#8D7F61"/><stop offset="0.151457" stopColor="#F1DCAD"/><stop offset="0.267035" stopColor="#8E7B53"/><stop offset="0.382648" stopColor="#E5D9A9"/><stop offset="0.495657" stopColor="#8A724C"/><stop offset="0.620286" stopColor="#E5D9A9"/><stop offset="0.73364" stopColor="#8E7B53"/><stop offset="0.866263" stopColor="#F1DCAD"/><stop offset="1" stopColor="#8D7F61"/></linearGradient></defs></svg>
 
         </div>
+
         <div className="side">
+          <div className="success">
+            <div className="content">
+              <div className="p1">
+                <svg width="529" height="216" viewBox="0 0 529 216" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M446.057 170.086L452.122 170.04L458.187 170.017L461.2 175.211L464.193 180.418L461.14 185.659L458.067 190.889L452.002 190.935L445.937 190.958L442.924 185.763L439.931 180.557L442.984 175.315L446.057 170.086Z" fill="#E09263"/><path d="M383.298 133.534L388.299 125.023L398.169 124.948L398.175 124.948L408.03 124.911L412.921 133.344L412.924 133.349L417.782 141.802L412.822 150.318L412.819 150.322L407.819 158.833L397.948 158.909L397.942 158.909L388.087 158.946L383.196 150.512L383.193 150.508L378.335 142.055L383.295 133.539L383.298 133.534Z" stroke="#E09263" strokeWidth="2.75789"/><path d="M394.044 72.9481L400.891 72.8957L407.739 72.8698L411.14 78.7344L414.518 84.6125L411.072 90.5295L407.603 96.4335L400.756 96.4859L393.908 96.5118L390.507 90.6471L387.129 84.7691L390.575 78.852L394.044 72.9481Z" fill="#E09263"/><path d="M432.304 86.8169L445.361 86.7169L458.418 86.6676L464.904 97.8505L471.346 109.059L464.774 120.342L458.159 131.599L445.102 131.699L432.046 131.749L425.56 120.566L419.118 109.357L425.689 98.0747L432.304 86.8169Z" fill="url(#paint0_linear_457_1825)"/><path d="M432.697 39.863L437.232 32.1445L446.184 32.076L446.19 32.076L455.126 32.0422L459.561 39.689L459.564 39.6937L463.968 47.3579L459.471 55.08L459.468 55.0846L454.933 62.8031L445.981 62.8716L445.975 62.8716L437.039 62.9054L432.604 55.2587L432.602 55.254L428.197 47.5897L432.694 39.8677L432.697 39.863Z" stroke="#E09263" strokeWidth="2.75789"/><path d="M82.0478 170.086L75.9824 170.04L69.9171 170.017L66.9042 175.211L63.9118 180.418L66.9643 185.659L70.0372 190.889L76.1026 190.935L82.1679 190.958L85.1808 185.763L88.1731 180.557L85.1207 175.315L82.0478 170.086Z" fill="#E09263"/><path d="M144.807 133.534L139.806 125.023L129.935 124.948L129.93 124.948L120.075 124.911L115.183 133.344L115.181 133.349L110.323 141.802L115.282 150.318L115.285 150.322L120.286 158.833L130.157 158.909L130.162 158.909L140.017 158.946L144.909 150.512L144.911 150.508L149.769 142.055L144.81 133.539L144.807 133.534Z" stroke="#E09263" strokeWidth="2.75789"/><path d="M134.061 72.9481L127.213 72.8957L120.366 72.8698L116.964 78.7344L113.586 84.6125L117.032 90.5295L120.501 96.4335L127.349 96.4859L134.196 96.5118L137.598 90.6471L140.976 84.7691L137.53 78.852L134.061 72.9481Z" fill="#E09263"/><path d="M95.8004 86.8169L82.7433 86.7169L69.6865 86.6676L63.2006 97.8505L56.7589 109.059L63.33 120.342L69.9451 131.599L83.0022 131.699L96.0589 131.749L102.545 120.566L108.987 109.357L102.415 98.0747L95.8004 86.8169Z" fill="url(#paint1_linear_457_1825)"/><path d="M95.4077 39.863L90.8723 32.1445L81.9202 32.076L81.9148 32.076L72.9786 32.0422L68.5436 39.689L68.5409 39.6937L64.1361 47.3579L68.6335 55.08L68.6362 55.0846L73.1716 62.8031L82.1237 62.8716L82.129 62.8716L91.0652 62.9054L95.5003 55.2587L95.503 55.254L99.9077 47.5897L95.4104 39.8677L95.4077 39.863Z" stroke="#E09263" strokeWidth="2.75789"/><path d="M259.762 3.00712L178.679 62.3823C177.624 63.1552 177 64.3851 177 65.6934V142.272L348 145.008V65.654C348 64.3679 347.397 63.1561 346.371 62.3804L267.928 3.0697C265.518 1.24777 262.199 1.22233 259.762 3.00712Z" fill="#125B5B"/><path d="M189.996 35.5681V89.6041V121.068C189.996 126.357 194.283 130.644 199.572 130.644H324.06C329.349 130.644 333.636 126.357 333.636 121.068V35.5681C333.636 30.2794 329.349 25.9921 324.06 25.9921H199.572C194.283 25.9921 189.996 30.2794 189.996 35.5681Z" fill="url(#paint2_linear_457_1825)"/><g filter="url(#filter0_d_457_1825)"><path d="M263.868 126.54L179.176 64.5217C178.273 63.8599 177 64.5053 177 65.6254V177.84C177 182.373 180.675 186.048 185.208 186.048H339.792C344.325 186.048 348 182.373 348 177.84V65.6775C348 64.5477 346.708 63.9049 345.807 64.5863L263.868 126.54Z" fill="#1A7374"/></g><g filter="url(#filter1_d_457_1825)"><path d="M259.35 119.866L177 177.84C177 182.373 180.675 186.048 185.208 186.048H339.792C344.325 186.048 348 182.373 348 177.84L265.65 119.866C263.761 118.536 261.239 118.536 259.35 119.866Z" fill="#137C7D"/></g><path d="M250.872 72.5041L260.448 82.0801L279.6 62.9281" stroke="#111D1D" strokeWidth="4.104" strokeLinecap="round" strokeLinejoin="round"/><defs><filter id="filter0_d_457_1825" x="173" y="58.887" width="179" height="129.793" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feFlood floodOpacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="-1.368"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_457_1825"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_457_1825" result="shape"/></filter><filter id="filter1_d_457_1825" x="172.8" y="113.3" width="179.4" height="75.5801" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feFlood floodOpacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="-1.368"/><feGaussianBlur stdDeviation="2.1"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_457_1825"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_457_1825" result="shape"/></filter><linearGradient id="paint0_linear_457_1825" x1="218.028" y1="210.529" x2="561.772" y2="11.2387" gradientUnits="userSpaceOnUse"><stop stopColor="#8D7F61"/><stop offset="0.151457" stopColor="#F1DCAD"/><stop offset="0.267035" stopColor="#8E7B53"/><stop offset="0.382648" stopColor="#E5D9A9"/><stop offset="0.495657" stopColor="#8A724C"/><stop offset="0.620286" stopColor="#E5D9A9"/><stop offset="0.73364" stopColor="#8E7B53"/><stop offset="0.866263" stopColor="#F1DCAD"/><stop offset="1" stopColor="#8D7F61"/></linearGradient><linearGradient id="paint1_linear_457_1825" x1="310.077" y1="210.529" x2="-33.6672" y2="11.2387" gradientUnits="userSpaceOnUse"><stop stopColor="#8D7F61"/><stop offset="0.151457" stopColor="#F1DCAD"/><stop offset="0.267035" stopColor="#8E7B53"/><stop offset="0.382648" stopColor="#E5D9A9"/><stop offset="0.495657" stopColor="#8A724C"/><stop offset="0.620286" stopColor="#E5D9A9"/><stop offset="0.73364" stopColor="#8E7B53"/><stop offset="0.866263" stopColor="#F1DCAD"/><stop offset="1" stopColor="#8D7F61"/></linearGradient><linearGradient id="paint2_linear_457_1825" x1="-416.431" y1="25.9921" x2="672.753" y2="23.3232" gradientUnits="userSpaceOnUse"><stop stopColor="#8D7F61"/><stop offset="0.151457" stopColor="#F1DCAD"/><stop offset="0.267035" stopColor="#8E7B53"/><stop offset="0.382648" stopColor="#E5D9A9"/><stop offset="0.495657" stopColor="#8A724C"/><stop offset="0.620286" stopColor="#E5D9A9"/><stop offset="0.73364" stopColor="#8E7B53"/><stop offset="0.866263" stopColor="#F1DCAD"/><stop offset="1" stopColor="#8D7F61"/></linearGradient></defs></svg>
+              </div>
+              <div className="p2 center">
+                <h2>Message Sent</h2>
+                <p>We’ve received your inquiry and will be in touch soon to discuss your project. Get ready to bring some whimsy to your space!</p>
+              </div>
+              <div className="p3">
+                <button className="orange" onClick={closeForm}>Close</button>
+              </div>
+            </div>
+          </div>
           <div className="desktop">
             <div className="image">
               <Image priority src={`/images/sections/form/desktop-side.png`}width={1500}height={1500}alt={`Beautiful Interior`}/>
@@ -137,8 +142,16 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
               const email = form1Inputs.current.find((input) => input.name === 'email');
               const phone = form1Inputs.current.find((input) => input.name === 'phone');
               const message = form1Textarea1.current;
-              
-              tags = tags.trim().slice(0, -2)
+              const radioButtons = document.querySelectorAll('.radioButtons button');
+
+              let tags = '';
+              for (let i = 0; i < radioButtons.length; i++) {
+                const curButton = radioButtons[i];
+                if (curButton.classList.contains('active') && validServices.includes(`${curButton.textContent}`)) {
+                  tags += `${curButton.textContent}|,`
+                }
+              }
+              if (tags != '') tags = tags.trim().slice(0, -2)
 
               let errors = document.querySelectorAll('.error');
               let inputs = document.querySelectorAll('input');
@@ -157,6 +170,7 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
                 alertErrorMessage("Not a Proper Email", "Please make sure that your email is correct.", email);
                 return;
               }
+
               sendContactRequestEmail({
                 name: name.value,
                 email: email.value, 

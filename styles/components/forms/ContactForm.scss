@@ -54,6 +54,7 @@
       }
       .hexagon-image {
         position: absolute;
+        z-index: 2;
         .image {width: 90%;height:90%;}
         &:nth-child(2) {
           top: 10%;
@@ -170,121 +171,71 @@
         width: max-content;
         margin: 0 auto;
         font-size: 20px;
-        background-color: var(--teal-200);
-        color: white;
+        //background-color: var(--teal-200);
+        //color: white;
         margin-top: var(--gap-1);
         &:hover {
-          color: var(--teal-200);
-          border-color: var(--teal-200);
-          background-color: transparent;
+          //color: var(--teal-200);
+          //border-color: var(--teal-200);
+          //background-color: transparent;
         }
+      }
+    }
+  }
+  .success {
+    position: absolute;
+    overflow-y: scroll;
+    z-index: -1;
+    opacity: 0;
+    display: grid;
+    place-items: center;
+    background-color: var(--teal-300);
+    width: 100vw;height: 100dvh;
+    @media (min-width: 1000px) {
+      width: 80vw;
+      max-width: 1200px;
+      height: 100%;
+      border-radius: 10px;
+    }
+    .content {
+      display: grid;
+      gap: var(--gap-2);
+      width: 80%;
+      max-width: 800px;
+      margin: 0;
+      .p1 svg {
+        width: 75%;
+        height: auto;
+      }
+      .p3 {
+        button {
+          padding-left: 75px;
+          padding-right: 75px;
+        }
+
       }
     }
   }
   &.submitted {
     .wrapper {
-      .back {
-        svg {
-          fill: white;
-        }
-        &:hover {svg{fill:var(--error-200);}}
-      }
-      .top {
-        .background {
-          svg:nth-child(1) {
-            animation: form-slide-svg ease-in .75s 1;
-            transform: translate(calc(100vw + 88%), -1px);
-          }
-          svg:nth-child(2) {
-            animation: form-slide-svg-phone ease-in-out 1s 1;
-            transform: translate(-2px, calc(100vh - 5rem));
-            transform: translate(-2px, calc(100dvh - 5rem));
-          }
-          >div {
-            animation: form-slide-div ease-in .75s 1;
-            transform: translate(100vw, 0);
-            @media (max-width: $phone) {
-              animation: form-slide-div-phone ease-in-out 1s 1;
-              transform: translate(0, calc(0vh + 2px - 5rem));
-            }
-          }
-        }
-        .content {
-          >div:nth-child(1) {
-            animation: fade-out-top-content ease-in .25s 1;
-            opacity: 0;
-          }
-          >div:nth-child(2) {
-            animation: fade-in-top-content ease-out .75s 1;
-            opacity: 1;
-            pointer-events: auto;
-            .side {
-              @media (max-width: $phone) {
-                position: relative;
-                animation: makeRel ease-out .25s 1;
-                @keyframes makeRel {
-                  0% {position: absolute;}
-                  99% {position: absolute;}
-                  100% {position: relative;}
-                }
-              }
-            }
-          }
-        }
-      }
-      @keyframes form-slide-svg {
-        0% {
-          transform: translate(90%, -1px);
-        }
-        100% {
-          transform: translate(calc(100vw + 90%), -1px);
-        }
-      }
-      @keyframes form-slide-div {
-        0% {
-          transform: translate(0, 0);
-        }
-        100% {
-          transform: translate(100vw, 0);
-        }
-      }
-      @keyframes form-slide-svg-phone {
-        0% {
-          transform: translate(-2px, calc(var(--gap-4) * -1));
-        }
-        100% {
-          transform: translate(-2px, calc(100vh - 5rem));
-          transform: translate(-2px, calc(100dvh - 5rem));
-        }
-      }
-      @keyframes form-slide-div-phone {
-        0% {
-          transform: translate(0, calc(-100vh + 2px - var(--gap-4)));
-          transform: translate(0, calc(-100dvh + 2px - var(--gap-4)));
-        }
-        100% {
-          transform: translate(0, calc(0vh + 2px - 5rem));
-        }
-      }
-      @keyframes fade-out-top-content {
-        0% {
+      .side {
+        .success {
+          animation: fade-in var(--transition) ease 1;
+          z-index: 1;
           opacity: 1;
         }
-        100% {
-          opacity: 0;
+        
+        .hexagon-image:nth-child(3) {
+          animation: slide-left var(--transition) ease 1;
+          transform: translate(350%, 90px);
         }
+        @keyframes slide-left {
+          0% {transform: translate(0, 0);}
+          100% {transform: translate(350%, 90px);}
+        }
+
       }
-      @keyframes fade-in-top-content {
-        0% {
-          opacity: 0;
-        }
-        50% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
+
     }
   }
 }
