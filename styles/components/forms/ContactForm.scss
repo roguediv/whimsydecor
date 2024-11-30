@@ -201,6 +201,7 @@
       display: grid;
       gap: var(--gap-2);
       width: 80%;
+      @media (max-width: $phone) {width: 100%;}
       max-width: 800px;
       margin: 0;
       .p1 svg {
