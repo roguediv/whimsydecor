@@ -37,7 +37,7 @@ export default async function SettingsPage() {
             <p>Manage your CMS login details, including email and password, and update the phone number displayed on the website. Note that changing your CMS email will also update the website contact email and where contact form submissions are sent. Changes will not be saved unless you select "Save" in the upper corner.</p>
           </div>
           <div className="text">
-            <Link href="/dashboard/settings/billing" style={{width: 'max-content'}}><button>Billing Setup</button></Link>
+            {/* <Link href="/dashboard/settings/billing" style={{width: 'max-content'}}><button>Billing Setup</button></Link> */}
             <TextInput id="iptSettingsName" placeholder="Name" loadText={user?.name}/>
             <TextInput id="iptSettingsEmail" placeholder="Email Address" loadText={user?.email}/>
             <TextInput id="iptSettingsPhone" placeholder="Phone Number" loadText={user?.phone ? user.phone : ''}/>
