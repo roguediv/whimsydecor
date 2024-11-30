@@ -96,14 +96,14 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
             <div className="two-input">
               <div className="one text-input ipt login-email">
                 <div className="form__group field">
-                  <input ref={addToForm1Inputs} name="name" type="text" className="form__field" maxLength={255} placeholder="a" />
+                  <input ref={addToForm1Inputs} name="fName" type="text" className="form__field" maxLength={255} placeholder="a" />
                   <label className="form__label">First Name*</label>
                 </div>
                 <div className="error"></div>
               </div>
               <div className="one text-input ipt login-email">
                 <div className="form__group field">
-                  <input ref={addToForm1Inputs} name="name" type="text" className="form__field" maxLength={255} placeholder="a" />
+                  <input ref={addToForm1Inputs} name="lName" type="text" className="form__field" maxLength={255} placeholder="a" />
                   <label className="form__label">Last Name*</label>
                 </div>
                 <div className="error"></div>
@@ -119,7 +119,7 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
             </div>
             <div className="one text-input ipt login-email">
               <div className="form__group field">
-                <input ref={addToForm1Inputs} name="phone" type="text" className="form__field" maxLength={255} placeholder="a" />
+                <input ref={addToForm1Inputs} name="phone" type="text" inputMode="numeric" className="form__field" maxLength={255} placeholder="a" />
                 <label className="form__label">Phone (optional)</label>
               </div>
               <div className="error"></div>
@@ -138,7 +138,8 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
             </div>
             <AutoTextarea ref={form1Textarea1} placeholder="Message" />
             <button onClick={() => {
-              const name = form1Inputs.current.find((input) => input.name === 'name');
+              const fName = form1Inputs.current.find((input) => input.name === 'fName');
+              const lName = form1Inputs.current.find((input) => input.name === 'lName');
               const email = form1Inputs.current.find((input) => input.name === 'email');
               const phone = form1Inputs.current.find((input) => input.name === 'phone');
               const message = form1Textarea1.current;
@@ -162,8 +163,12 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
                 elm.classList.remove('inputError');
               })
 
-              if (!name || !isStringLengthValid(name.value)) {
-                alertErrorMessage("Name Invalid", "First name must have between 2 and 300 characters.", name);
+              if (!fName || !isStringLengthValid(fName.value)) {
+                alertErrorMessage("Name Invalid", "First name must have between 2 and 300 characters.", fName);
+                return;
+              }
+              if (!lName || !isStringLengthValid(lName.value)) {
+                alertErrorMessage("Name Invalid", "Last name must have between 2 and 300 characters.", lName);
                 return;
               }
               if (!email || !isValidEmail(email.value)) {
@@ -172,7 +177,7 @@ const ContactForm : React.FC<props> = ({className = ''}) => {
               }
 
               sendContactRequestEmail({
-                name: name.value,
+                name: `${fName.value} ${lName.value}`,
                 email: email.value, 
                 phone: phone ? phone.value : "",
                 tags: tags,
