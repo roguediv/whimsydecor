@@ -39,7 +39,7 @@
     }
     @media(max-width: $phone) {
       padding: var(--gap-3);
-      padding-top: 10vw;
+      padding-top: 25vw;
       padding-bottom: 25vw;
       grid-template-columns: 1fr 1fr;
       transform: scale(1.3);
