@@ -16,7 +16,7 @@ const Footer: React.FC<props> = ({className = '', socialLinks}) => {
           <Brand/>
           <GlobalPhoneAnchor />
           <GlobalEmailAnchor />
-          <p>St. Louis, United States, MO</p>
+          <p>St. Louis, MO</p>
         </div>
         <div className="p-2">
           <Socials socialLinks={socialLinks} />
